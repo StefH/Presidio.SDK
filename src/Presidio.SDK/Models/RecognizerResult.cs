@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Presidio.Json;
 
 namespace Presidio.Models;
 
@@ -13,7 +14,8 @@ public class RecognizerResult
 
     public double Score { get; set; }
 
-    public required string EntityType { get; set; }
+    [JsonConverter(typeof(SafeEnumConverter<PIIEntityTypes>))]
+    public required PIIEntityTypes EntityType { get; init; }
 
     public RecognizedMetadata RecognitionMetadata { get; set; } = null!;    
 }

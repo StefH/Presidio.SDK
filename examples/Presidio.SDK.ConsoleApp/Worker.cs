@@ -12,7 +12,7 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
 {
     public async Task RunAsync(CancellationToken cancellationToken = default)
     {
-        var text = "John Smith lives in Paris and his drivers license is AC432223 and for Jane it's AC439999";
+        const string text = "John Smith lives in Paris and his drivers license is AC432223 and for Jane it's AC439999";
 
         // Step 1: Analyze text for PII
         var analyzeRequest = new AnalyzeRequest
@@ -24,43 +24,34 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
         var analysisResults = await analyzerService.AnalyzeAsync(analyzeRequest);
 
         var sortedPersonResults = analysisResults
-            .Where(r =>r.EntityType == "PERSON")
+            .Where(r => r.EntityType == PIIEntityTypes.PERSON)
             .OrderByDescending(r => r.Start)
             .ToArray();
 
-        // Step 2: Replace in original text
-        //var personCount = sortedPersonResults.Length;
-        //var modified = text;
-        //foreach (var r in sortedPersonResults)
-        //{
-        //    var replacement = $"ANONYMIZED_PERSON_{--personCount}";
-        //    modified = modified.Substring(0, r.Start) + replacement + modified.Substring(r.End);
-        //}
-
-        //var personCount = sortedPersonResults.Length;
+        // Step 2a: Replace in original text
         var modified = text;
-        var d = new Dictionary<string, string>();
+        var map = new Dictionary<string, string>();
         foreach (var r in sortedPersonResults)
         {
             var replacement = $"`{Guid.NewGuid()}`";
             var originalValue = text.Substring(r.Start, r.Length);
 
-            d.Add(replacement, originalValue);
+            map.Add(replacement, originalValue);
             modified = modified.Substring(0, r.Start) + replacement + modified.Substring(r.End);
         }
 
         logger.LogWarning("Modified text: {Text}", modified);
 
-        // Reverse
+        // Step 2b: Reverse
         var reversed = modified;
-        foreach (var (key, value) in d)
+        foreach (var (key, value) in map)
         {
             reversed = reversed.Replace(key, value);
         }
         logger.LogWarning("Reversed text: {Text}", reversed);
 
 
-        // Step 3: Anonymize the detected PII using interface
+        // Step 3: Anonymize the detected PII using service
         var anonymizeRequest = new AnonymizeRequest
         {
             Text = text,
