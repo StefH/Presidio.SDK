@@ -1,10 +1,15 @@
-﻿namespace Presidio.Models;
+﻿using Newtonsoft.Json;
+
+namespace Presidio.Models;
 
 public class RecognizerResult
 {
     public int Start { get; set; }
 
     public int End { get; set; }
+
+    [JsonIgnore]
+    public int Length => End - Start;
 
     public double Score { get; set; }
 
