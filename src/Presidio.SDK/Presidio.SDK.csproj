@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>0.0.1-preview-01</Version>
+    <Version>0.0.1-preview-00</Version>
     <RootNamespace>Presidio</RootNamespace>
     <TargetFrameworks>netstandard2.1;net6.0;net8.0</TargetFrameworks>
     <ApplicationIcon>../../resources/icon.ico</ApplicationIcon>
@@ -13,7 +13,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/StefH/Presidio.SDK</RepositoryUrl>
-    <PackageTags>Presidio;AI;PII;anonymizer;anonymizer;client;rest;api;restease;</PackageTags>
+    <PackageTags>Presidio;SDK;AI;PII;Personally Identifiable Information;classification;analyzer;anonymizer;client;rest;api;restease;</PackageTags>
     <Description>This unofficial (RestEase based) client enables working with Presidio REST Interface (https://microsoft.github.io/presidio/api-docs/api-docs.html)</Description>
     <PackageReadmeFile>PackageReadme.md</PackageReadmeFile>
   </PropertyGroup>
