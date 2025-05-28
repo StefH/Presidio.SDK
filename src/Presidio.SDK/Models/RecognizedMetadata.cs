@@ -6,4 +6,6 @@ public class RecognizedMetadata
     /// Name of recognizer that made the decision
     /// </summary>
     public required string RecognizerName { get; init; }
+
+    public required string RecognizerIdentifier { get; init; }
 }

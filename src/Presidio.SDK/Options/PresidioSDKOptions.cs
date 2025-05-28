@@ -46,4 +46,6 @@ public class PresidioSDKOptions
     /// Default value is <c>false</c>;
     /// </summary>
     public bool LogResponse { get; set; }
+
+    public bool WriteJsonIndented { get; set; }
 }

@@ -86,5 +86,5 @@ public static class AdditionalPatternRecognizers
             }
         ],
         Context = ["bsn", "Burgerservicenummer"]
-    };
+    }; 
 }
