@@ -4,42 +4,46 @@ using Newtonsoft.Json.Converters;
 namespace Presidio.Json;
 
 /// <summary>
-/// A generic JSON converter for enums that falls back to an UNKNOWN value when conversion fails.
+/// A generic JSON converter for enums that falls back to an UNKNOWN/DEFAULT value when conversion fails.
 /// This converter attempts to parse string values to enum values, and if parsing fails,
-/// it returns the UNKNOWN enum value instead of throwing an exception.
+/// it returns the UNKNOWN/DEFAULT enum value instead of throwing an exception.
 /// </summary>
 /// <typeparam name="TEnum">The enum type to convert</typeparam>
 internal class SafeEnumConverter<TEnum> : StringEnumConverter
     where TEnum : struct, Enum
 {
-    private readonly TEnum _unknownValue;
+    private readonly TEnum _defaultValue;
 
     /// <summary>
     /// Initializes a new instance of the SafeEnumConverter class.
-    /// Assumes the enum has an UNKNOWN value.
+    /// Assumes the enum has an DEFAULT value.
     /// </summary>
     public SafeEnumConverter()
     {
-        // Try to get the UNKNOWN value from the enum
-        if (Enum.TryParse<TEnum>("UNKNOWN", true, out var unknownValue))
+        // Try to get the DEFAULT value from the enum
+        if (Enum.TryParse<TEnum>("DEFAULT", true, out var defaultValue))
         {
-            _unknownValue = unknownValue;
+            _defaultValue = defaultValue;
+        }
+        else if (Enum.TryParse<TEnum>("UNKNOWN", true, out var unknownValue))
+        {
+            _defaultValue = unknownValue;
         }
         else
         {
-            // If no UNKNOWN value exists, use the first enum value as fallback
+            // If no DEFAULT or UNKNOWN value exists, use the first enum value as fallback
             var values = Enum.GetValues(typeof(TEnum)).OfType<TEnum>().ToArray();
-            _unknownValue = values.Length > 0 ? values[0] : default;
+            _defaultValue = values.Length > 0 ? values[0] : default;
         }
     }
 
     /// <summary>
-    /// Initializes a new instance of the SafeEnumConverter class with a specific unknown value.
+    /// Initializes a new instance of the SafeEnumConverter class with a specific DEFAULT value.
     /// </summary>
-    /// <param name="unknownValue">The enum value to use when conversion fails</param>
-    public SafeEnumConverter(TEnum unknownValue)
+    /// <param name="defaultValue">The enum value to use when conversion fails</param>
+    public SafeEnumConverter(TEnum defaultValue)
     {
-        _unknownValue = unknownValue;
+        _defaultValue = defaultValue;
     }
 
     /// <summary>
@@ -62,7 +66,7 @@ internal class SafeEnumConverter<TEnum> : StringEnumConverter
                     return null;
                 }
 
-                return _unknownValue;
+                return _defaultValue;
             }
 
             // Handle string values
@@ -72,7 +76,7 @@ internal class SafeEnumConverter<TEnum> : StringEnumConverter
 
                 if (string.IsNullOrWhiteSpace(enumString))
                 {
-                    return _unknownValue;
+                    return _defaultValue;
                 }
 
                 // Try to parse the string to enum (case-insensitive)
@@ -81,8 +85,8 @@ internal class SafeEnumConverter<TEnum> : StringEnumConverter
                     return result;
                 }
 
-                // If parsing fails, return the unknown value
-                return _unknownValue;
+                // If parsing fails, return the DEFAULT value
+                return _defaultValue;
             }
 
             // Handle integer values
@@ -94,16 +98,16 @@ internal class SafeEnumConverter<TEnum> : StringEnumConverter
                     return Enum.ToObject(typeof(TEnum), intValue);
                 }
 
-                return _unknownValue;
+                return _defaultValue;
             }
 
-            // For any other token type, return unknown value
-            return _unknownValue;
+            // For any other token type, return DEFAULT value
+            return _defaultValue;
         }
         catch
         {
-            // If any exception occurs during conversion, return the unknown value
-            return _unknownValue;
+            // If any exception occurs during conversion, return the DEFAULT value
+            return _defaultValue;
         }
     }
 

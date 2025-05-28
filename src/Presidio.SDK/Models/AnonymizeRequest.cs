@@ -1,4 +1,6 @@
-﻿namespace Presidio.Models;
+﻿using Presidio.Enums;
+
+namespace Presidio.Models;
 
 /// <summary>
 /// Request object for anonymizing text using specified anonymizers and analyzer results.
@@ -16,7 +18,7 @@ public class AnonymizeRequest
     /// <remarks>
     /// Example: { "DEFAULT": { "type": "replace", "new_value": "&lt;ENTITY_TYPE&gt;" } }
     /// </remarks>
-    public Dictionary<string, IAnonymizer>? Anonymizers { get; init; }
+    public Dictionary<PIIEntityTypes, IAnonymizer>? Anonymizers { get; init; }
 
     /// <summary>
     /// Array of analyzer detections.

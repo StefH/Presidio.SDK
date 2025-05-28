@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Presidio.Enums;
 using Presidio.Json;
 
 namespace Presidio.Models;
@@ -8,7 +9,8 @@ public class OperatorResult
     /// <summary>
     /// Name of the used operator
     /// </summary>
-    public required string Operator { get; init; }
+    [JsonConverter(typeof(SafeEnumConverter<Operators>))]
+    public required Operators Operator { get; init; }
 
     /// <summary>
     /// Type of the PII entity

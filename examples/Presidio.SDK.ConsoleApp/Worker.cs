@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Presidio.Enums;
 using Presidio.Models;
 
 namespace Presidio.SDK.ConsoleApp;
@@ -12,7 +13,7 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
 {
     public async Task RunAsync(CancellationToken cancellationToken = default)
     {
-        const string text = "John Smith lives in Paris and his drivers license is AC432223 and for Jane it's AC439999";
+        const string text = "John Smith (john@test.com) lives in 127.0.0.1 and his drivers license is AC432223 and for Jane it's AC439999";
 
         // Step 1: Analyze text for PII
         var analyzeRequest = new AnalyzeRequest
@@ -55,10 +56,12 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
         var anonymizeRequest = new AnonymizeRequest
         {
             Text = text,
-            Anonymizers = new Dictionary<string, IAnonymizer>
+            Anonymizers = new Dictionary<PIIEntityTypes, IAnonymizer>
             {
-                ["PERSON"] = new Replace { NewValue = "ANONYMIZED_PERSON" },
-                ["US_DRIVER_LICENSE"] = new Mask { MaskingChar = "*", CharsToMask = 4, FromEnd = true }
+                [PIIEntityTypes.DEFAULT] = new Replace { NewValue = "***" },
+                [PIIEntityTypes.PERSON] = new Replace { NewValue = "ANONYMIZED_PERSON" },
+                [PIIEntityTypes.EMAIL_ADDRESS] = new Encrypt { Key = "3t6w9z$C.F)J@NcR" },
+                [PIIEntityTypes.US_DRIVER_LICENSE] = new Mask { MaskingChar = "*", CharsToMask = 4, FromEnd = true }
             },
             AnalyzerResults = analysisResults.Select(r => new RecognizerResult
             {
@@ -71,5 +74,20 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
 
         var anonymizeResponse = await anonymizerService.AnonymizeAsync(anonymizeRequest);
         logger.LogWarning("Anonymized text: {Text}", anonymizeResponse.Text);
+
+        var deanonymizeRequest = new DeanonymizeRequest
+        {
+            Text = anonymizeResponse.Text,
+            Deanonymizers = new Dictionary<PIIEntityTypes, Decrypt>
+            {
+                [PIIEntityTypes.EMAIL_ADDRESS] = new() { Key = "3t6w9z$C.F)J@NcR" }
+            },
+            AnonymizerResults = anonymizeResponse.Items
+                .Where(r => r.Operator == Operators.encrypt)
+                .ToArray()
+        };
+
+        var deanonymizeResponse = await anonymizerService.DeanonymizeAsync(deanonymizeRequest);
+        //logger.LogWarning("Deanonymized text: {Text}", deanonymizeResponse.Text);
     }
 }

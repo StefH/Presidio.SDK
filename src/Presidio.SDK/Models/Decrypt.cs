@@ -14,6 +14,6 @@ public class Decrypt
     /// <summary>
     /// Cryptographic key of length 128, 192 or 256 bits, in a string format.
     /// </summary>
-    /// <example>3t6w9z$C.F)J@NcR</example>
+    /// <example>PxorTF1uf4CRorPE1eb3CA==</example>
     public required string Key { get; init; }
 }

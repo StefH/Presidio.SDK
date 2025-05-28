@@ -1,13 +1,12 @@
 ﻿// ReSharper disable InconsistentNaming
-namespace Presidio.Models;
+namespace Presidio.Enums;
 
 /// <summary>
 /// Enumeration of the supported Personally Identifiable Information (PII) entity types for detection and classification
 /// </summary>
 public enum PIIEntityTypes
 {
-    // Unknown
-
+    DEFAULT,
     UNKNOWN,
 
     // Global Entity Types

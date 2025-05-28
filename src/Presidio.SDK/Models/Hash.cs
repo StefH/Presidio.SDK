@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Presidio.Enums;
 using Presidio.Json;
 
 namespace Presidio.Models;

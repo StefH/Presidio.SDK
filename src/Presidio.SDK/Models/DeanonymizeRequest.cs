@@ -1,4 +1,6 @@
-﻿namespace Presidio.Models;
+﻿using Presidio.Enums;
+
+namespace Presidio.Models;
 
 public class DeanonymizeRequest
 {
@@ -10,7 +12,7 @@ public class DeanonymizeRequest
     /// <summary>
     /// Object where the key is DEFAULT or the ENTITY_TYPE and the value is decrypt since it is the only one supported
     /// </summary>
-    public Dictionary<string, Decrypt> Deanonymizers { get; set; } = new();
+    public Dictionary<PIIEntityTypes, Decrypt> Deanonymizers { get; set; } = new();
 
     /// <summary>
     /// Array of anonymized PIIs

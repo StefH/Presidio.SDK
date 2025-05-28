@@ -1,5 +1,5 @@
 ﻿// ReSharper disable InconsistentNaming
-namespace Presidio.Models;
+namespace Presidio.Enums;
 
 /// <summary>
 /// Specifies the types of cryptographic hash algorithms supported. 
