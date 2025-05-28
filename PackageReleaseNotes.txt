@@ -1,0 +1,4 @@
+# 0.0.1-preview-02 (28 May 2025)
+- #1 Initial code [enhancement]
+
+The full release notes can be found here: https://github.com/StefH/Presidio.SDK/blob/main/ReleaseNotes.md
