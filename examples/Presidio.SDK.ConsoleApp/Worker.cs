@@ -22,7 +22,6 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
             BSN = 123456782
             
             And for Jane it's AC439999
-
             """;
 
         var supportedEntities = await analyzerService.GetSupportedEntitiesAsync("en", cancellationToken);
