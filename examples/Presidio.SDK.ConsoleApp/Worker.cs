@@ -92,7 +92,6 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
             Text = text,
             Anonymizers = new Dictionary<string, IAnonymizer>
             {
-                // [PIIEntityTypes.PERSON] = new Replace { NewValue = "ANONYMIZED_PERSON" },
                 [PIIEntityTypes.EMAIL_ADDRESS] = new Encrypt { Key = "3t6w9z$C.F)J@NcR" },
                 [PIIEntityTypes.US_DRIVER_LICENSE] = new Mask { MaskingChar = "*", CharsToMask = 4, FromEnd = true }
             },
