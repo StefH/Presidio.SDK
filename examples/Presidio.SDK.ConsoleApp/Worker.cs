@@ -88,6 +88,6 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
         };
 
         var deanonymizeResponse = await anonymizerService.DeanonymizeAsync(deanonymizeRequest);
-        //logger.LogWarning("Deanonymized text: {Text}", deanonymizeResponse.Text);
+        logger.LogWarning("Deanonymized text: {Text}", deanonymizeResponse.Text);
     }
 }

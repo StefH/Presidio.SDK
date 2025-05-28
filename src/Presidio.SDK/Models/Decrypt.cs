@@ -1,4 +1,6 @@
-﻿namespace Presidio.Models;
+﻿using Presidio.Enums;
+
+namespace Presidio.Models;
 
 /// <summary>
 /// Replace encrypted PII decrypted text.
@@ -9,7 +11,8 @@ public class Decrypt
     /// "decrypt"
     /// </summary>
     /// <example>decrypt</example>
-    public string Type => "decrypt";
+    
+    public Operators Type => Operators.decrypt;
 
     /// <summary>
     /// Cryptographic key of length 128, 192 or 256 bits, in a string format.

@@ -27,8 +27,7 @@ public interface IPresidioAnonymizer
     /// <param name="request">The deanonymize request containing encrypted text and decryption parameters</param>
     /// <returns>Deanonymized text with details about applied operations</returns>
     [Post("/deanonymize")]
-    [AllowAnyStatusCode]
-    Task<Response<DeanonymizeResponse>> DeanonymizeAsync([Body] DeanonymizeRequest request);
+    Task<DeanonymizeResponse> DeanonymizeAsync([Body] DeanonymizeRequest request);
 
     /// <summary>
     /// Get the list of all built-in supported deanonymizers

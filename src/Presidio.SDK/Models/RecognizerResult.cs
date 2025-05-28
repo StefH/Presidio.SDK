@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Presidio.Enums;
-using Presidio.Json;
 
 namespace Presidio.Models;
 
@@ -30,7 +29,7 @@ public class RecognizerResult
     /// <summary>
     /// The detected entity type
     /// </summary>
-    [JsonConverter(typeof(SafeEnumConverter<PIIEntityTypes>))]
+    //[JsonConverter(typeof(SafeEnumConverter<PIIEntityTypes>))]
     public required PIIEntityTypes EntityType { get; init; }
 
     /// <summary>

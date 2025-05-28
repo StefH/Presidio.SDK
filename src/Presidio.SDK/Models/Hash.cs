@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using Presidio.Enums;
-using Presidio.Json;
+﻿using Presidio.Enums;
 
 namespace Presidio.Models;
 
@@ -15,6 +13,5 @@ public class Hash : IAnonymizer
     /// The hashing algorithm.
     /// Allowed values: "sha256", "sha512". Default: "sha256".
     /// </summary>
-    [JsonConverter(typeof(SafeEnumConverter<HashTypes>))]
     public HashTypes HashType { get; set; } = HashTypes.sha256;
 }

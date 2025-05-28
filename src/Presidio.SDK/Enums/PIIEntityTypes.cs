@@ -1,9 +1,14 @@
 ﻿// ReSharper disable InconsistentNaming
+
+using Newtonsoft.Json;
+using Presidio.Json;
+
 namespace Presidio.Enums;
 
 /// <summary>
 /// Enumeration of the supported Personally Identifiable Information (PII) entity types for detection and classification
 /// </summary>
+[JsonConverter(typeof(SafeEnumConverter<PIIEntityTypes>))]
 public enum PIIEntityTypes
 {
     DEFAULT,
@@ -247,7 +252,7 @@ public enum PIIEntityTypes
     IN_VEHICLE_REGISTRATION,
 
     /// <summary>
-    /// Indian Election Commission issued 10 digit alpha numeric voter id for all indian citizens (age 18 or above).
+    /// Indian Election Commission issued 10 digit alphanumeric voter id for all indian citizens (age 18 or above).
     /// Detection Method: Pattern match, context
     /// </summary>
     IN_VOTER,

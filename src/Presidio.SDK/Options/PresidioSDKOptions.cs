@@ -34,4 +34,14 @@ public class PresidioSDKOptions
     /// In addition to Network failures, TaskCanceledException, HTTP 5XX and HTTP 408. Also retry these <see cref="HttpStatusCode"/>s. [Optional]
     /// </summary>
     public HttpStatusCode[]? HttpStatusCodesToRetry { get; set; }
+
+    /// <summary>
+    /// Log the request.
+    /// </summary>
+    public bool LogRequest { get; set; }
+
+    /// <summary>
+    /// Log the response.
+    /// </summary>
+    public bool LogResponse { get; set; }
 }
