@@ -1,16 +1,37 @@
 ﻿namespace Presidio.Models;
 
+/// <summary>
+/// A regular expressions or deny-list based recognizer.
+/// </summary>
 public class PatternRecognizer
 {
-    public string Name { get; set; } = null!;
+    /// <summary>
+    /// Name of recognizer.
+    /// </summary>
+    public required string Name { get; set; }
 
-    public string SupportedLanguage { get; set; } = null!;
+    /// <summary>
+    /// Language code supported by this recognizer.
+    /// </summary>
+    public required string SupportedLanguage { get; set; }
 
+    /// <summary>
+    /// List of type Pattern containing regex expressions with additional metadata.
+    /// </summary>
     public Pattern[] Patterns { get; set; } = null!;
 
+    /// <summary>
+    /// List of words to be returned as PII if found.
+    /// </summary>
     public string[] DenyList { get; set; } = null!;
 
+    /// <summary>
+    /// List of words to be used to increase confidence if found in the vicinity of detected entities.
+    /// </summary>
     public string[] Context { get; set; } = null!;
 
-    public string SupportedEntity { get; set; } = null!;
+    /// <summary>
+    /// The name of entity this ad hoc recognizer detects.
+    /// </summary>
+    public required string SupportedEntity { get; set; }
 }

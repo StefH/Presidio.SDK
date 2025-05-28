@@ -2,9 +2,18 @@
 
 public class DeanonymizeRequest
 {
+    /// <summary>
+    /// The anonymized text
+    /// </summary>
     public required string Text { get; init; }
 
-    public Dictionary<string, Decrypt>? Deanonymizers { get; set; }
+    /// <summary>
+    /// Object where the key is DEFAULT or the ENTITY_TYPE and the value is decrypt since it is the only one supported
+    /// </summary>
+    public Dictionary<string, Decrypt> Deanonymizers { get; set; } = new();
 
+    /// <summary>
+    /// Array of anonymized PIIs
+    /// </summary>
     public required OperatorResult[] AnonymizerResults { get; init; }
 }

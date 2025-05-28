@@ -70,8 +70,6 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
         };
 
         var anonymizeResponse = await anonymizerService.AnonymizeAsync(anonymizeRequest);
-
-        // Result: anonymized text
         logger.LogWarning("Anonymized text: {Text}", anonymizeResponse.Text);
     }
 }

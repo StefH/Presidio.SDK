@@ -1,22 +1,52 @@
 ﻿namespace Presidio.Models;
 
+/// <summary>
+/// Explanation of how a recognizer made a decision.
+/// </summary>
 public class AnalysisExplanation
 {
-    public string Recognizer { get; set; }
+    /// <summary>
+    /// Name of recognizer that made the decision.
+    /// </summary>
+    public required string Recognizer { get; init; }
 
-    public string PatternName { get; set; }
+    /// <summary>
+    /// Name of pattern (if decision was made by a PatternRecognizer).
+    /// </summary>
+    public required string PatternName { get; init; }
 
-    public string Pattern { get; set; }
+    /// <summary>
+    /// Regex pattern that was applied (if PatternRecognizer).
+    /// </summary>
+    public required string Pattern { get; init; }
 
+    /// <summary>
+    /// Recognizer's confidence in result.
+    /// </summary>
     public double? OriginalScore { get; set; }
 
+    /// <summary>
+    /// The PII detection score.
+    /// </summary>
     public double Score { get; set; }
 
-    public string TextualExplanation { get; set; }
+    /// <summary>
+    /// Free text for describing a decision of a logic or model.
+    /// </summary>
+    public required string TextualExplanation { get; init; }
 
+    /// <summary>
+    /// Difference from the original score.
+    /// </summary>
     public double? ScoreContextImprovement { get; set; }
 
-    public string SupportiveContextWord { get; set; }
+    /// <summary>
+    /// The context word which helped increase the score.
+    /// </summary>
+    public required string SupportiveContextWord { get; init; }
 
+    /// <summary>
+    /// Result of a validation (e.g. checksum).
+    /// </summary>
     public double? ValidationResult { get; set; }
 }

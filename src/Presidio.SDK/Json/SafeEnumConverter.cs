@@ -108,26 +108,14 @@ internal class SafeEnumConverter<TEnum> : StringEnumConverter
     }
 
     /// <summary>
-    /// Writes the JSON representation of the object.
-    /// </summary>
-    /// <param name="writer">The JsonWriter to write to</param>
-    /// <param name="value">The value to write</param>
-    /// <param name="serializer">The calling serializer</param>
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-    {
-        // Use the base StringEnumConverter behavior for writing
-        base.WriteJson(writer, value, serializer);
-    }
-
-    /// <summary>
     /// Determines whether this instance can convert the specified object type.
     /// </summary>
     /// <param name="objectType">Type of the object</param>
     /// <returns>true if this instance can convert the specified object type; otherwise, false</returns>
     public override bool CanConvert(Type objectType)
     {
-        Type actualType = IsNullableType(objectType) ? Nullable.GetUnderlyingType(objectType) : objectType;
-        return actualType != null && actualType.IsEnum && actualType == typeof(TEnum);
+        var actualType = IsNullableType(objectType) ? Nullable.GetUnderlyingType(objectType) : objectType;
+        return actualType is { IsEnum: true } && actualType == typeof(TEnum);
     }
 
     /// <summary>

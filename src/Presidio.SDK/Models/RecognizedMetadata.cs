@@ -2,5 +2,8 @@
 
 public class RecognizedMetadata
 {
-    public string RecognizerName { get; set; } = null!;
+    /// <summary>
+    /// Name of recognizer that made the decision
+    /// </summary>
+    public required string RecognizerName { get; init; }
 }

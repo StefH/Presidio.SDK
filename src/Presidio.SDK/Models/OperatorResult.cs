@@ -1,14 +1,39 @@
-﻿namespace Presidio.Models;
+﻿using Newtonsoft.Json;
+using Presidio.Json;
+
+namespace Presidio.Models;
 
 public class OperatorResult
 {
-    public required string Operator { get; set; }
+    /// <summary>
+    /// Name of the used operator
+    /// </summary>
+    public required string Operator { get; init; }
 
-    public required string EntityType { get; set; }
+    /// <summary>
+    /// Type of the PII entity
+    /// </summary>
+    [JsonConverter(typeof(SafeEnumConverter<PIIEntityTypes>))]
+    public required PIIEntityTypes EntityType { get; init; }
 
-    public int Start { get; set; }
+    /// <summary>
+    /// Start index of the changed text
+    /// </summary>
+    public int Start { get; init; }
 
-    public int End { get; set; }
+    /// <summary>
+    /// End index in the changed text
+    /// </summary>
+    public int End { get; init; }
 
-    public required string Text { get; set; }
+    /// <summary>
+    /// The length of the changed text.
+    /// </summary>
+    [JsonIgnore]
+    public int Length => End - Start;
+
+    /// <summary>
+    /// The new text returned
+    /// </summary>
+    public required string Text { get; init; }
 }

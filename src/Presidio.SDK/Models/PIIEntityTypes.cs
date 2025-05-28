@@ -2,10 +2,12 @@
 namespace Presidio.Models;
 
 /// <summary>
-/// Enumeration of Personally Identifiable Information (PII) entity types for detection and classification
+/// Enumeration of the supported Personally Identifiable Information (PII) entity types for detection and classification
 /// </summary>
 public enum PIIEntityTypes
 {
+    // Unknown
+
     UNKNOWN,
 
     // Global Entity Types
