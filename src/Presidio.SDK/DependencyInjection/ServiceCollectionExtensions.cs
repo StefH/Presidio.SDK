@@ -18,7 +18,7 @@ public static class ServiceCollectionExtensions
     {
         ContractResolver = new DefaultContractResolver
         {
-            NamingStrategy = new SnakeCaseNamingStrategy(),
+            NamingStrategy = new SnakeCaseNamingStrategy()
         }
     };
 
