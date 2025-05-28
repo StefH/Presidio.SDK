@@ -5,8 +5,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Presidio.Enums;
+using Presidio.Extensions.PatternRecognizers;
 using Presidio.Models;
-using Presidio.PatternRecognizers;
 using Presidio.Types;
 
 namespace Presidio.SDK.ConsoleApp;
@@ -17,7 +17,14 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
     {
         var text =
             """
-            John Smith (john@test.com) lives in 127.0.0.1 at postcode: 6100 AA / Zip code: 10023 and his drivers license is AC432223.
+            PostCode = 1200 AA
+            PostCode = 1200 aa
+            
+            Date1: January 04, 2025 at 06:38 PM
+            Date2: 30 maart 2025 11:12:13
+            Date3: 30 maart 2025 om 11:12:13
+            
+            John Smith (john@test.com) lives in 127.0.0.1 at postcode: 9000 AB / Zip code: 10023 and his drivers license is AC432223.
             
             BSN = 123456782
             
@@ -51,6 +58,8 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
                     ],
                     Context = [ "zip", "code" ]
                 },
+                AdditionalPatternRecognizers.DutchDate,
+                AdditionalPatternRecognizers.DutchDateTime,
                 AdditionalPatternRecognizers.DutchPostCode,
                 AdditionalPatternRecognizers.DutchBSN
             ]

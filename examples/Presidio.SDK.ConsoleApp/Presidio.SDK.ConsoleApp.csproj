@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Presidio.SDK.Extensions\Presidio.SDK.Extensions.csproj" />
     <ProjectReference Include="..\..\src\Presidio.SDK\Presidio.SDK.csproj" />
   </ItemGroup>
 

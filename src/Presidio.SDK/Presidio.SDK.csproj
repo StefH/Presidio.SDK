@@ -4,35 +4,11 @@
     <Version>0.0.1-preview-02</Version>
     <RootNamespace>Presidio</RootNamespace>
     <TargetFrameworks>netstandard2.1;net6.0;net8.0</TargetFrameworks>
-    <ApplicationIcon>../../resources/icon.ico</ApplicationIcon>
-    <Copyright>Copyright © 2025 Stef Heyenrath</Copyright>
-    <Authors>Stef Heyenrath</Authors>
-    <PackageIcon>icon.png</PackageIcon>
-    <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../../PackageReleaseNotes.txt"))</PackageReleaseNotes>
-    <PackageProjectUrl>https://github.com/StefH/Presidio.SDK</PackageProjectUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/StefH/Presidio.SDK</RepositoryUrl>
     <PackageTags>Presidio;SDK;AI;PII;Personally Identifiable Information;classification;analyzer;anonymizer;client;rest;api;restease;</PackageTags>
     <Description>This unofficial (RestEase based) client enables working with Presidio REST Interface (https://microsoft.github.io/presidio/api-docs/api-docs.html)</Description>
-    <PackageReadmeFile>PackageReadme.md</PackageReadmeFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="../../resources/icon.png" Pack="true" PackagePath="" />
-    <None Include="../../PackageReadme.md" Pack="true" PackagePath="" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="RestEase.HttpClientFactory" Version="1.6.4" />
     <PackageReference Include="RestEase.SourceGenerator" Version="1.6.4">
       <PrivateAssets>all</PrivateAssets>
@@ -64,10 +40,6 @@
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net9.0' ">
     <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="9.0.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Json\" />
   </ItemGroup>
 
 </Project>

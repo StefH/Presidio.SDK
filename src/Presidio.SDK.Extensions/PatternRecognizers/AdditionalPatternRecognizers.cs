@@ -1,6 +1,6 @@
 ﻿using Presidio.Models;
 
-namespace Presidio.PatternRecognizers;
+namespace Presidio.Extensions.PatternRecognizers;
 
 /// <summary>
 /// Additional AdditionalPatternRecognizers.
@@ -26,6 +26,46 @@ public static class AdditionalPatternRecognizers
             }
         ],
         Context = ["postcode"]
+    };
+
+    /// <summary>
+    /// Recognizer for Dutch date (NL_DATE).
+    /// </summary>
+    public static readonly PatternRecognizer DutchDate = new()
+    {
+        Name = "NL Date",
+        SupportedEntity = "NL_DATE",
+        SupportedLanguage = "en",
+        Patterns =
+        [
+            new Pattern
+            {
+                Name = "Dutch Date",
+                Regex = @"(\b\d{1,2}\s+(januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)\s+\d{4}\b)",
+                Score = 1
+            }
+        ],
+        Context = ["date"]
+    };
+
+    /// <summary>
+    /// Recognizer for Dutch date (NL_DATE_TIME).
+    /// </summary>
+    public static readonly PatternRecognizer DutchDateTime = new()
+    {
+        Name = "NL DateTime",
+        SupportedEntity = "NL_DATE_TIME",
+        SupportedLanguage = "en",
+        Patterns =
+        [
+            new Pattern
+            {
+                Name = "Dutch DateTime",
+                Regex = @"\b\d{1,2}\s+(januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)\s+\d{4}\s+om\s+\d{2}:\d{2}:\d{2}\b",
+                Score = 1
+            }
+        ],
+        Context = ["date", "datetime", "time"]
     };
 
     /// <summary>
