@@ -13,7 +13,7 @@ public class OperatorResult
     /// <summary>
     /// Type of the PII entity
     /// </summary>
-    public required PIIEntityTypes EntityType { get; init; }
+    public required string EntityType { get; init; }
 
     /// <summary>
     /// Start index of the changed text

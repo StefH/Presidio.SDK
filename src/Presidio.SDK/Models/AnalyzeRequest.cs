@@ -1,4 +1,6 @@
-﻿namespace Presidio.Models;
+﻿using Newtonsoft.Json;
+
+namespace Presidio.Models;
             
 public class AnalyzeRequest
 {
@@ -37,6 +39,7 @@ public class AnalyzeRequest
     /// <summary>
     /// List of recognizers to be used in the context of this request only (ad-hoc).
     /// </summary>
+    [JsonProperty("ad_hoc_recognizers")]
     public PatternRecognizer[]? AdHocRecognizers { get; init; }
 
     /// <summary>

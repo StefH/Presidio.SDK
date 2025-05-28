@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Presidio.Enums;
 
 namespace Presidio.Models;
 
@@ -29,7 +28,7 @@ public class RecognizerResult
     /// <summary>
     /// The detected entity type
     /// </summary>
-    public required PIIEntityTypes EntityType { get; init; }
+    public required string EntityType { get; init; }
 
     /// <summary>
     /// Recognition metadata

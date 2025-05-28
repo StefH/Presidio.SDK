@@ -13,6 +13,7 @@ public class Pattern
     /// <summary>
     /// Regex pattern string.
     /// </summary>
+    [RegexPattern]
     public required string Regex { get; init; }
 
     /// <summary>

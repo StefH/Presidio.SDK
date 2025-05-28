@@ -18,17 +18,17 @@ public class PatternRecognizer
     /// <summary>
     /// List of type Pattern containing regex expressions with additional metadata.
     /// </summary>
-    public Pattern[] Patterns { get; set; } = null!;
+    public required Pattern[] Patterns { get; set; }
 
     /// <summary>
     /// List of words to be returned as PII if found.
     /// </summary>
-    public string[] DenyList { get; set; } = null!;
+    public string[]? DenyList { get; set; }
 
     /// <summary>
     /// List of words to be used to increase confidence if found in the vicinity of detected entities.
     /// </summary>
-    public string[] Context { get; set; } = null!;
+    public string[]? Context { get; set; }
 
     /// <summary>
     /// The name of entity this ad hoc recognizer detects.

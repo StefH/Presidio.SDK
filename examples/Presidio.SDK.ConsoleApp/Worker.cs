@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Presidio.Enums;
 using Presidio.Models;
+using Presidio.PatternRecognizers;
+using Presidio.Types;
 
 namespace Presidio.SDK.ConsoleApp;
 
@@ -13,16 +15,48 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
 {
     public async Task RunAsync(CancellationToken cancellationToken = default)
     {
-        const string text = "John Smith (john@test.com) lives in 127.0.0.1 and his drivers license is AC432223 and for Jane it's AC439999";
+        const string text =
+            """
+            John Smith (john@test.com) lives in 127.0.0.1 at postcode: 6100 AA / Zip code: 10023 and his drivers license is AC432223.
+            
+            BSN = 123456782
+            
+            And for Jane it's AC439999
+            """;
+
+        var supportedEntities = await analyzerService.GetSupportedEntitiesAsync("en", cancellationToken);
+        logger.LogWarning("SupportedEntities : {items}", string.Join(',', supportedEntities));
 
         // Step 1: Analyze text for PII
         var analyzeRequest = new AnalyzeRequest
         {
             Text = text,
-            Language = "en"
+            Language = "en",
+            CorrelationId = Guid.NewGuid().ToString(),
+            AdHocRecognizers =
+            [
+                new PatternRecognizer
+                {
+                    Name = "US zip code recognizer",
+                    SupportedEntity = "US_ZIP",
+                    SupportedLanguage = "en",
+                    Patterns =
+                    [
+                        new Pattern
+                        {
+                            Name = "zip code (weak)",
+                            Regex = @"(\b\d{5}(?:\-\d{4})?\b)",
+                            Score = 0.5
+                        }
+                    ],
+                    Context = [ "zip", "code" ]
+                },
+                AdditionalPatternRecognizers.DutchPostCode,
+                AdditionalPatternRecognizers.DutchBSN
+            ]
         };
 
-        var analysisResults = await analyzerService.AnalyzeAsync(analyzeRequest);
+        var analysisResults = await analyzerService.AnalyzeAsync(analyzeRequest, cancellationToken);
 
         var sortedPersonResults = analysisResults
             .Where(r => r.EntityType == PIIEntityTypes.PERSON)
@@ -56,7 +90,7 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
         var anonymizeRequest = new AnonymizeRequest
         {
             Text = text,
-            Anonymizers = new Dictionary<PIIEntityTypes, IAnonymizer>
+            Anonymizers = new Dictionary<string, IAnonymizer>
             {
                 [PIIEntityTypes.DEFAULT] = new Replace { NewValue = "***" },
                 [PIIEntityTypes.PERSON] = new Replace { NewValue = "ANONYMIZED_PERSON" },
@@ -72,13 +106,13 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
             }).ToArray()
         };
 
-        var anonymizeResponse = await anonymizerService.AnonymizeAsync(anonymizeRequest);
+        var anonymizeResponse = await anonymizerService.AnonymizeAsync(anonymizeRequest, cancellationToken);
         logger.LogWarning("Anonymized text: {Text}", anonymizeResponse.Text);
 
         var deanonymizeRequest = new DeanonymizeRequest
         {
             Text = anonymizeResponse.Text,
-            Deanonymizers = new Dictionary<PIIEntityTypes, Decrypt>
+            Deanonymizers = new Dictionary<string, Decrypt>
             {
                 [PIIEntityTypes.EMAIL_ADDRESS] = new() { Key = "3t6w9z$C.F)J@NcR" }
             },
@@ -87,7 +121,7 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
                 .ToArray()
         };
 
-        var deanonymizeResponse = await anonymizerService.DeanonymizeAsync(deanonymizeRequest);
+        var deanonymizeResponse = await anonymizerService.DeanonymizeAsync(deanonymizeRequest, cancellationToken);
         logger.LogWarning("Deanonymized text: {Text}", deanonymizeResponse.Text);
     }
 }
