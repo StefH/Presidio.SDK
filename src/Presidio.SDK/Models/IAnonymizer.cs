@@ -1,4 +1,6 @@
-﻿namespace Presidio.Models;
+﻿using Presidio.Enums;
+
+namespace Presidio.Models;
 
 /// <summary>
 /// Represents an anonymizer that provides functionality for data anonymization.
@@ -7,5 +9,5 @@
 /// The <see cref="Type"/> property can be used to identify the type or category of the anonymizer.</remarks>
 public interface IAnonymizer
 {
-    string Type { get; }
+    Operators Type { get; }
 }

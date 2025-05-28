@@ -1,4 +1,6 @@
-﻿namespace Presidio.Models;
+﻿using Presidio.Enums;
+
+namespace Presidio.Models;
 
 
 /// <summary>
@@ -10,5 +12,5 @@ public class Redact : IAnonymizer
     /// Gets the type of the anonymizer.
     /// </summary>
     /// <example>redact</example>
-    public string Type => "redact";
+    public Operators Type => Operators.redact;
 }

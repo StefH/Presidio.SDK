@@ -1,11 +1,13 @@
-﻿namespace Presidio.Models;
+﻿using Presidio.Enums;
+
+namespace Presidio.Models;
 
 public class Mask : IAnonymizer
 {
     /// <summary>
     /// Gets the type of the anonymizer. Always "mask".
     /// </summary>
-    public string Type => "mask";
+    public Operators Type => Operators.mask;
 
     /// <summary>
     /// The replacement character.

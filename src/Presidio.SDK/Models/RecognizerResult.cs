@@ -29,7 +29,6 @@ public class RecognizerResult
     /// <summary>
     /// The detected entity type
     /// </summary>
-    //[JsonConverter(typeof(SafeEnumConverter<PIIEntityTypes>))]
     public required PIIEntityTypes EntityType { get; init; }
 
     /// <summary>

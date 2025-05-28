@@ -19,7 +19,7 @@ public class PresidioSDKOptions
 
     /// <summary>
     /// This timeout in seconds defines the timeout on the HttpClient which is used to call the BaseAddress.
-    /// Default value is 60 seconds.
+    /// Default value is <c>60</c> seconds.
     /// </summary>
     [Range(1, int.MaxValue)]
     public int TimeoutInSeconds { get; set; } = 60;
@@ -36,12 +36,14 @@ public class PresidioSDKOptions
     public HttpStatusCode[]? HttpStatusCodesToRetry { get; set; }
 
     /// <summary>
-    /// Log the request.
+    /// Log the request as Debug Logging.
+    /// Default value is <c>false</c>;
     /// </summary>
     public bool LogRequest { get; set; }
 
     /// <summary>
-    /// Log the response.
+    /// Log the response as Debug Logging.
+    /// Default value is <c>false</c>;
     /// </summary>
     public bool LogResponse { get; set; }
 }

@@ -7,7 +7,7 @@ public class Hash : IAnonymizer
     /// <summary>
     /// Gets the anonymizer type.
     /// </summary>
-    public string Type => "hash";
+    public Operators Type => Operators.hash;
 
     /// <summary>
     /// The hashing algorithm.

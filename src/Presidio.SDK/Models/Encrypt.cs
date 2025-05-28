@@ -1,4 +1,6 @@
-﻿namespace Presidio.Models;
+﻿using Presidio.Enums;
+
+namespace Presidio.Models;
 
 /// <summary>
 /// Replace with an encrypted value.
@@ -8,7 +10,7 @@ public class Encrypt : IAnonymizer
     /// <summary>
     /// Gets the anonymizer type.
     /// </summary>
-    public string Type => "encrypt";
+    public Operators Type => Operators.encrypt;
 
     /// <summary>
     /// Cryptographic key of length 128, 192 or 256 bits, in a string format.

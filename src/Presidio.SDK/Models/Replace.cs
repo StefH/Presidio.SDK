@@ -1,4 +1,6 @@
-﻿namespace Presidio.Models;
+﻿using Presidio.Enums;
+
+namespace Presidio.Models;
 
 /// <summary>
 /// Replace with a given value.
@@ -9,7 +11,7 @@ public class Replace : IAnonymizer
     /// The type of anonymizer. Always "replace".
     /// </summary>
     /// <example>replace</example>
-    public string Type => "replace";
+    public Operators Type => Operators.replace;
 
     /// <summary>
     /// The string to replace with.
