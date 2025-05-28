@@ -41,7 +41,7 @@ public static class AdditionalPatternRecognizers
             new Pattern
             {
                 Name = "Dutch BSN",
-                Regex = "([1-9][0-9]{8})",
+                Regex = @"(\s[1-9][0-9]{8}\s)",
                 Score = 0.75
             }
         ],
