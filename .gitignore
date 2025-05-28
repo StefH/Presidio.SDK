@@ -155,7 +155,6 @@ coverage*.info
 
 # NCrunch
 _NCrunch_*
-.NCrunch_*
 .*crunch*.local.xml
 nCrunchTemp_*
 
@@ -399,3 +398,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/examples/Presidio.SDK.ConsoleApp/appsettings.Development.json
