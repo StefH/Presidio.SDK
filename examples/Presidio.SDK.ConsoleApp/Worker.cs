@@ -15,13 +15,14 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
 {
     public async Task RunAsync(CancellationToken cancellationToken = default)
     {
-        const string text =
+        var text =
             """
             John Smith (john@test.com) lives in 127.0.0.1 at postcode: 6100 AA / Zip code: 10023 and his drivers license is AC432223.
             
             BSN = 123456782
             
             And for Jane it's AC439999
+
             """;
 
         var supportedEntities = await analyzerService.GetSupportedEntitiesAsync("en", cancellationToken);
@@ -92,8 +93,7 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
             Text = text,
             Anonymizers = new Dictionary<string, IAnonymizer>
             {
-                [PIIEntityTypes.DEFAULT] = new Replace { NewValue = "***" },
-                [PIIEntityTypes.PERSON] = new Replace { NewValue = "ANONYMIZED_PERSON" },
+                // [PIIEntityTypes.PERSON] = new Replace { NewValue = "ANONYMIZED_PERSON" },
                 [PIIEntityTypes.EMAIL_ADDRESS] = new Encrypt { Key = "3t6w9z$C.F)J@NcR" },
                 [PIIEntityTypes.US_DRIVER_LICENSE] = new Mask { MaskingChar = "*", CharsToMask = 4, FromEnd = true }
             },

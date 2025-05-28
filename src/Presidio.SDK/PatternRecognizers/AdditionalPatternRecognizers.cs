@@ -21,7 +21,7 @@ public static class AdditionalPatternRecognizers
             new Pattern
             {
                 Name = "Dutch PostCode",
-                Regex = "([1-9][0-9]{3}\\s?(?!SA|SD|SS)[A-Z]{2})",
+                Regex = @"(\s[1-9][0-9]{3}\s?(?!SA|SD|SS)[A-Z]{2}\s)",
                 Score = 1
             }
         ],
