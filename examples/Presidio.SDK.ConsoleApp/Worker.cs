@@ -84,7 +84,6 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
                     Context = [ "zip", "code" ]
                 },
                 AdditionalPatternRecognizers.DutchDate,
-                AdditionalPatternRecognizers.DutchDateTime,
                 AdditionalPatternRecognizers.DutchPostCode,
                 AdditionalPatternRecognizers.DutchBSN,
                 AdditionalPatternRecognizers.DutchStreet

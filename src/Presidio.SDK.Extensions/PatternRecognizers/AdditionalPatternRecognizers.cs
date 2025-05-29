@@ -13,7 +13,7 @@ public static class AdditionalPatternRecognizers
     /// </summary>
     public static readonly PatternRecognizer DutchPostCode = new()
     {
-        Name = "Dutch postcode recognizer",
+        Name = "Dutch Postcode recognizer",
         SupportedEntity = "NL_POSTCODE",
         SupportedLanguage = "nl",
         Patterns =
@@ -33,7 +33,7 @@ public static class AdditionalPatternRecognizers
     /// </summary>
     public static readonly PatternRecognizer DutchDate = new()
     {
-        Name = "NL Date",
+        Name = "Dutch Date recognizer",
         SupportedEntity = "NL_DATE",
         SupportedLanguage = "nl",
         Patterns =
@@ -46,26 +46,6 @@ public static class AdditionalPatternRecognizers
             }
         ],
         Context = ["date"]
-    };
-
-    /// <summary>
-    /// Recognizer for Dutch date (NL_DATE_TIME).
-    /// </summary>
-    public static readonly PatternRecognizer DutchDateTime = new()
-    {
-        Name = "NL DateTime",
-        SupportedEntity = "NL_DATE_TIME",
-        SupportedLanguage = "nl",
-        Patterns =
-        [
-            new Pattern
-            {
-                Name = "Dutch DateTime",
-                Regex = @"\b\d{1,2}\s+(januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)\s+\d{4}\s+om\s+\d{2}:\d{2}:\d{2}\b",
-                Score = 1
-            }
-        ],
-        Context = ["date", "datetime", "time"]
     };
 
     /// <summary>
@@ -93,7 +73,7 @@ public static class AdditionalPatternRecognizers
     /// </summary>
     public static readonly PatternRecognizer DutchStreet = new()
     {
-        Name = "Dutch Street including house number",
+        Name = "Dutch Street (including house number) recognizer",
         SupportedEntity = "NL_STREET",
         SupportedLanguage = "nl",
         Patterns =
@@ -102,7 +82,7 @@ public static class AdditionalPatternRecognizers
             {
                 Name = "Dutch Street",
                 Regex = @"\b(?:(?:[0-9]{1,2}(?:e|ste|de)\s)?(?:(?:van|de|den|der|het|ter|ten|la|le|l’|sint|saint|prof(?:essor)?|dr|mr|mevrouw|jonkheer)\.?[\s\-]*)*)(?:[\w\-']+\s?)+(?:straat|laan|weg|hof|gracht|plein|dreef|singel|pad|steeg|kade|plantsoen|boulevard|ring|markt|akker|gaarde|zoom|oord|veld|kamp|erf|hoek|wal|berg|weide|rotonde|park|stoep|brug|haven|vest|scheg|pier|lei|tuin|kaai|dam|dwarsstraat|dwarsweg|dwarslaan)\b\s*[0-9]{1,5}(?:[\s\-]?[a-zA-Z]{1,3})?(?:\s?[0-9]{1,2})?",
-                Score = 0.99
+                Score = 0.90
             }
         ],
         Context = ["street", "address"]
