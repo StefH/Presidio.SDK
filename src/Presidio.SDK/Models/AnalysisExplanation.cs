@@ -5,6 +5,17 @@
 /// </summary>
 public class AnalysisExplanation
 {
+    private static readonly Dictionary<int, string> PythonRegexNamesMap = new()
+    {
+        { 0, "None" },
+        { 2, "IgnoreCase" },
+        { 4, "CultureInvariant" },
+        { 8, "Multiline" },
+        { 16, "DotAll" },
+        { 64, "IgnorePatternWhitespace" },
+        { 256, "ECMAScript" }
+    };
+
     /// <summary>
     /// Name of recognizer that made the decision.
     /// </summary>
@@ -23,7 +34,32 @@ public class AnalysisExplanation
     /// <summary>
     /// Regex Flags.
     /// </summary>
-    public double? RegexFlags { get; init; }
+    public int? RegexFlags { get; init; }
+
+    /// <summary>
+    /// Returns a comma separated list of the Python Regex flags based on the RegexFlags property.
+    /// </summary>
+    public string? RegexFlagsAsString
+    {
+        get
+        {
+            if (RegexFlags == null)
+            {
+                return null;
+            }
+
+            var flagNames = new List<string>();
+            foreach (var kvp in PythonRegexNamesMap.Skip(1))
+            {
+                if ((RegexFlags & kvp.Key) == kvp.Key)
+                {
+                    flagNames.Add(kvp.Value);
+                }
+            }
+
+            return flagNames.Count > 0 ? string.Join(", ", flagNames) : PythonRegexNamesMap[0];
+        }
+    }
 
     /// <summary>
     /// Recognizer's confidence in result.
