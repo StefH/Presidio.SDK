@@ -15,7 +15,7 @@ public static class AdditionalPatternRecognizers
     {
         Name = "Dutch postcode recognizer",
         SupportedEntity = "NL_POSTCODE",
-        SupportedLanguage = "en",
+        SupportedLanguage = "nl",
         Patterns =
         [
             new Pattern
@@ -35,7 +35,7 @@ public static class AdditionalPatternRecognizers
     {
         Name = "NL Date",
         SupportedEntity = "NL_DATE",
-        SupportedLanguage = "en",
+        SupportedLanguage = "nl",
         Patterns =
         [
             new Pattern
@@ -55,7 +55,7 @@ public static class AdditionalPatternRecognizers
     {
         Name = "NL DateTime",
         SupportedEntity = "NL_DATE_TIME",
-        SupportedLanguage = "en",
+        SupportedLanguage = "nl",
         Patterns =
         [
             new Pattern
@@ -75,7 +75,7 @@ public static class AdditionalPatternRecognizers
     {
         Name = "Dutch Burgerservicenummer (BSN) recognizer",
         SupportedEntity = "NL_BSN",
-        SupportedLanguage = "en",
+        SupportedLanguage = "nl",
         Patterns =
         [
             new Pattern
@@ -95,7 +95,7 @@ public static class AdditionalPatternRecognizers
     {
         Name = "Dutch Street including house number",
         SupportedEntity = "NL_STREET",
-        SupportedLanguage = "en",
+        SupportedLanguage = "nl",
         Patterns =
         [
             new Pattern

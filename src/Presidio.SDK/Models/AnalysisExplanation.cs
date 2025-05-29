@@ -9,11 +9,13 @@ public class AnalysisExplanation
     {
         { 0, "None" },
         { 2, "IgnoreCase" },
-        { 4, "CultureInvariant" },
+        { 4, "Locale" },
         { 8, "Multiline" },
         { 16, "DotAll" },
-        { 64, "IgnorePatternWhitespace" },
-        { 256, "ECMAScript" }
+        { 32, "Unicode" },
+        { 64, "IgnoreWhitespaceAndComments" },
+        { 128, "Debug" },
+        { 256, "ASCII" }
     };
 
     /// <summary>
