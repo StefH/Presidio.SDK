@@ -17,6 +17,10 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
     {
         var text =
             """
+            Jan de Vries
+            Hoofdstraat 25
+            1234 AB Amsterdam
+            
             PostCode = 1200 AA
             PostCode = 1200 aa
             
@@ -62,7 +66,8 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
                 AdditionalPatternRecognizers.DutchDate,
                 AdditionalPatternRecognizers.DutchDateTime,
                 AdditionalPatternRecognizers.DutchPostCode,
-                AdditionalPatternRecognizers.DutchBSN
+                AdditionalPatternRecognizers.DutchBSN,
+                AdditionalPatternRecognizers.DutchStreet
             ]
         };
 

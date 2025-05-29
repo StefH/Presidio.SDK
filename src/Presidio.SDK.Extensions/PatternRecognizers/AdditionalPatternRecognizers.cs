@@ -87,4 +87,21 @@ public static class AdditionalPatternRecognizers
         ],
         Context = ["bsn", "Burgerservicenummer"]
     };
+
+    public static readonly PatternRecognizer DutchStreet = new()
+    {
+        Name = "Dutch Street including house number",
+        SupportedEntity = "NL_STREET",
+        SupportedLanguage = "en",
+        Patterns =
+        [
+            new Pattern
+            {
+                Name = "Dutch Street",
+                Regex = @"\b(?:(?:[0-9]{1,2}(?:e|ste|de)\s)?(?:(?:van|de|den|der|het|ter|ten|la|le|l’|sint|saint|prof(?:essor)?|dr|mr|mevrouw|jonkheer)\.?[\s\-]*)*)(?:[\w\-']+\s?)+(?:straat|laan|weg|hof|gracht|plein|dreef|singel|pad|steeg|kade|plantsoen|boulevard|ring|markt|akker|gaarde|zoom|oord|veld|kamp|erf|hoek|wal|berg|weide|rotonde|park|stoep|brug|haven|vest|scheg|pier|lei|tuin|kaai|dam|dwarsstraat|dwarsweg|dwarslaan)\b\s*[0-9]{1,5}(?:[\s\-]?[a-zA-Z]{1,3})?(?:\s?[0-9]{1,2})?",
+                Score = 0.99
+            }
+        ],
+        Context = ["bsn", "Burgerservicenummer"]
+    };
 }
