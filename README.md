@@ -1,9 +1,18 @@
-# Presidio SDK
+﻿# Presidio SDK
 Unofficial [RestEase](https://github.com/canton7/RestEase) C# Client for [Microsoft Presidio](https://microsoft.github.io).
 
-## NuGet Packages
+## 📦 Presidio.SDK
 [![NuGet Badge](https://img.shields.io/nuget/v/Presidio.SDK)](https://www.nuget.org/packages/Presidio.SDK)<br>
+
+## 📦 Presidio.SDK.Extensions
 [![NuGet Badge Extensions](https://img.shields.io/nuget/v/Presidio.SDK.Extensions)](https://www.nuget.org/packages/Presidio.SDK.Extensions)
+
+Some extensions like:
+- DutchPostCode
+- DutchStreet
+- DutchDate
+- DutchBSN
+
 
 ## Usage
 

@@ -88,6 +88,9 @@ public static class AdditionalPatternRecognizers
         Context = ["bsn", "Burgerservicenummer"]
     };
 
+    /// <summary>
+    /// Provides a recognizer for identifying a Dutch Street Address (including house number).
+    /// </summary>
     public static readonly PatternRecognizer DutchStreet = new()
     {
         Name = "Dutch Street including house number",
