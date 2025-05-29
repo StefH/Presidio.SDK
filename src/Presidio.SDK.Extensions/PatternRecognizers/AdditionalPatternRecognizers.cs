@@ -21,7 +21,7 @@ public static class AdditionalPatternRecognizers
             new Pattern
             {
                 Name = "Dutch PostCode",
-                Regex = @"(\s[1-9][0-9]{3}\s?(?!SA|SD|SS)[A-Z]{2}\s)",
+                Regex = @"\b[1-9][0-9]{3}\s?(?!SA|SD|SS)[A-Z]{2}\b",
                 Score = 1
             }
         ],
@@ -41,7 +41,7 @@ public static class AdditionalPatternRecognizers
             new Pattern
             {
                 Name = "Dutch Date",
-                Regex = @"(\b\d{1,2}\s+(januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)\s+\d{4}\b)",
+                Regex = @"\b\d{1,2}\s+(januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)\s+\d{4}\b",
                 Score = 1
             }
         ],
@@ -81,10 +81,10 @@ public static class AdditionalPatternRecognizers
             new Pattern
             {
                 Name = "Dutch BSN",
-                Regex = @"(\s[1-9][0-9]{8}\s)",
+                Regex = @"\b[1-9][0-9]{8}\b",
                 Score = 0.75
             }
         ],
         Context = ["bsn", "Burgerservicenummer"]
-    }; 
+    };
 }

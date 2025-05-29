@@ -24,7 +24,7 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
             Date2: 30 maart 2025 11:12:13
             Date3: 30 maart 2025 om 11:12:13
             
-            John Smith (john@test.com) lives in 127.0.0.1 at postcode: 9000 AB / Zip code: 10023 and his drivers license is AC432223.
+            John Smith (john@test.com) lives in 127.0.0.1 or FE80::0202:B3FF:FFFF:8329 at postcode: 9000 AB / Zip code: 10023 and his drivers license is AC432223.
             
             BSN = 123456782
             
@@ -40,6 +40,7 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
             Text = text,
             Language = "en",
             CorrelationId = Guid.NewGuid().ToString(),
+            ReturnDecisionProcess = true,
             AdHocRecognizers =
             [
                 new PatternRecognizer

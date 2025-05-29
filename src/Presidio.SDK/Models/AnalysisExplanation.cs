@@ -13,12 +13,17 @@ public class AnalysisExplanation
     /// <summary>
     /// Name of pattern (if decision was made by a PatternRecognizer).
     /// </summary>
-    public required string PatternName { get; init; }
+    public string? PatternName { get; init; }
 
     /// <summary>
     /// Regex pattern that was applied (if PatternRecognizer).
     /// </summary>
-    public required string Pattern { get; init; }
+    public string? Pattern { get; init; }
+
+    /// <summary>
+    /// Regex Flags.
+    /// </summary>
+    public double? RegexFlags { get; init; }
 
     /// <summary>
     /// Recognizer's confidence in result.
@@ -48,5 +53,5 @@ public class AnalysisExplanation
     /// <summary>
     /// Result of a validation (e.g. checksum).
     /// </summary>
-    public double? ValidationResult { get; set; }
+    public object? ValidationResult { get; set; }
 }

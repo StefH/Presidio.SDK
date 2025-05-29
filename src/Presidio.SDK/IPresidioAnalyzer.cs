@@ -13,7 +13,7 @@ public interface IPresidioAnalyzer
     /// <param name="cancellationToken">The optional <see cref="CancellationToken"/>.</param>
     /// <returns>A list of analysis results</returns>
     [Post("/analyze")]
-    Task<RecognizerResultWithAnalysisExplanation[]> AnalyzeAsync([Body] AnalyzeRequest request, CancellationToken cancellationToken = default);
+    Task<RecognizerResult[]> AnalyzeAsync([Body] AnalyzeRequest request, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Get the available PII recognizers for a given language
