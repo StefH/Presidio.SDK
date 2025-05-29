@@ -1,4 +1,5 @@
-﻿using Presidio.Models;
+﻿using Presidio.Enums;
+using Presidio.Models;
 
 namespace Presidio.Extensions.PatternRecognizers;
 
@@ -7,6 +8,8 @@ namespace Presidio.Extensions.PatternRecognizers;
 /// </summary>
 public static class AdditionalPatternRecognizers
 {
+    private const RegexFlags DefaultGlobalRegexFlags = RegexFlags.Multiline | RegexFlags.DotAll;
+
     /// <summary>
     /// Recognizer for Dutch postcodes (NL_POSTCODE).
     /// Matches 4 digits (not starting with 0), optional space, and 2 uppercase letters (excluding SA, SD, SS).
@@ -16,6 +19,7 @@ public static class AdditionalPatternRecognizers
         Name = "Dutch Postcode recognizer",
         SupportedEntity = "NL_POSTCODE",
         SupportedLanguage = "nl",
+        GlobalRegexFlags = DefaultGlobalRegexFlags,
         Patterns =
         [
             new Pattern
@@ -36,6 +40,7 @@ public static class AdditionalPatternRecognizers
         Name = "Dutch Date recognizer",
         SupportedEntity = "NL_DATE",
         SupportedLanguage = "nl",
+        GlobalRegexFlags = DefaultGlobalRegexFlags,
         Patterns =
         [
             new Pattern
@@ -56,6 +61,7 @@ public static class AdditionalPatternRecognizers
         Name = "Dutch Burgerservicenummer (BSN) recognizer",
         SupportedEntity = "NL_BSN",
         SupportedLanguage = "nl",
+        GlobalRegexFlags = DefaultGlobalRegexFlags,
         Patterns =
         [
             new Pattern

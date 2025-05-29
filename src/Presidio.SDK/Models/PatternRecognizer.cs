@@ -1,4 +1,6 @@
-﻿namespace Presidio.Models;
+﻿using Presidio.Enums;
+
+namespace Presidio.Models;
 
 /// <summary>
 /// A regular expressions or deny-list based recognizer.
@@ -19,6 +21,11 @@ public class PatternRecognizer
     /// List of type Pattern containing regex expressions with additional metadata.
     /// </summary>
     public required Pattern[] Patterns { get; set; }
+
+    /// <summary>
+    /// The Regex flags to use for this recognizer.
+    /// </summary>
+    public RegexFlags? GlobalRegexFlags { get; set; }
 
     /// <summary>
     /// List of words to be returned as PII if found.

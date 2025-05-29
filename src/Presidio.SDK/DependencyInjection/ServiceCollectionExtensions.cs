@@ -62,6 +62,7 @@ public static class ServiceCollectionExtensions
             {
                 NamingStrategy = new SnakeCaseNamingStrategy()
             },
+            NullValueHandling = NullValueHandling.Ignore,
             Formatting = options.WriteJsonIndented ? Formatting.Indented : Formatting.None
         };
 

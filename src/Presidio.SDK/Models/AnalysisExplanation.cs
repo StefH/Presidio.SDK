@@ -1,23 +1,12 @@
-﻿namespace Presidio.Models;
+﻿using Presidio.Enums;
+
+namespace Presidio.Models;
 
 /// <summary>
 /// Explanation of how a recognizer made a decision.
 /// </summary>
 public class AnalysisExplanation
 {
-    private static readonly Dictionary<int, string> PythonRegexNamesMap = new()
-    {
-        { 0, "None" },
-        { 2, "IgnoreCase" },
-        { 4, "Locale" },
-        { 8, "Multiline" },
-        { 16, "DotAll" },
-        { 32, "Unicode" },
-        { 64, "IgnoreWhitespaceAndComments" },
-        { 128, "Debug" },
-        { 256, "ASCII" }
-    };
-
     /// <summary>
     /// Name of recognizer that made the decision.
     /// </summary>
@@ -34,34 +23,9 @@ public class AnalysisExplanation
     public string? Pattern { get; init; }
 
     /// <summary>
-    /// Regex Flags.
+    /// Regex Flags used.
     /// </summary>
-    public int? RegexFlags { get; init; }
-
-    /// <summary>
-    /// Returns a comma separated list of the Python Regex flags based on the RegexFlags property.
-    /// </summary>
-    public string? RegexFlagsAsString
-    {
-        get
-        {
-            if (RegexFlags == null)
-            {
-                return null;
-            }
-
-            var flagNames = new List<string>();
-            foreach (var kvp in PythonRegexNamesMap.Skip(1))
-            {
-                if ((RegexFlags & kvp.Key) == kvp.Key)
-                {
-                    flagNames.Add(kvp.Value);
-                }
-            }
-
-            return flagNames.Count > 0 ? string.Join(", ", flagNames) : PythonRegexNamesMap[0];
-        }
-    }
+    public RegexFlags? RegexFlags { get; init; }
 
     /// <summary>
     /// Recognizer's confidence in result.
