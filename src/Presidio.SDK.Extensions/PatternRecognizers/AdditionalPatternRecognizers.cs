@@ -105,6 +105,6 @@ public static class AdditionalPatternRecognizers
                 Score = 0.99
             }
         ],
-        Context = ["bsn", "Burgerservicenummer"]
+        Context = ["street", "address"]
     };
 }
