@@ -17,7 +17,7 @@ public enum RegexFlags
     IgnoreCase = 2,
 
     /// <summary>
-    /// Locale-dependent matching. (Deprecated in favor of <c>Unicode</c>>)
+    /// Locale-dependent matching. (Deprecated in favor of <c>Unicode</c>)
     /// </summary>
     Locale = 4,
 
