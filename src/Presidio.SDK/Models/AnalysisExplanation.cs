@@ -40,7 +40,7 @@ public class AnalysisExplanation
     /// <summary>
     /// Free text for describing a decision of a logic or model.
     /// </summary>
-    public required string TextualExplanation { get; init; }
+    public string? TextualExplanation { get; init; }
 
     /// <summary>
     /// Difference from the original score.
@@ -50,7 +50,7 @@ public class AnalysisExplanation
     /// <summary>
     /// The context word which helped increase the score.
     /// </summary>
-    public required string SupportiveContextWord { get; init; }
+    public string? SupportiveContextWord { get; init; }
 
     /// <summary>
     /// Result of a validation (e.g. checksum).

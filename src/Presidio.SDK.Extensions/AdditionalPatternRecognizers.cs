@@ -1,7 +1,7 @@
 ﻿using Presidio.Enums;
 using Presidio.Models;
 
-namespace Presidio.Extensions.PatternRecognizers;
+namespace Presidio.Extensions;
 
 /// <summary>
 /// Additional AdditionalPatternRecognizers.
@@ -9,6 +9,26 @@ namespace Presidio.Extensions.PatternRecognizers;
 public static class AdditionalPatternRecognizers
 {
     private const RegexFlags DefaultGlobalRegexFlags = RegexFlags.Multiline | RegexFlags.DotAll;
+
+    /// <summary>
+    /// Recognizer for ISO 8601 Date object with timezone or UTC. 
+    /// </summary>
+    public static readonly PatternRecognizer DateTimeISO8601 = new ()
+    {
+        Name = "ISO 8601 DateTime recognizer",
+        SupportedEntity = "DATE_TIME",
+        SupportedLanguage = "en",
+        Patterns =
+        [
+            new Pattern
+            {
+                Name = "ISO 8601 DateTime",
+                Regex = @"\b(\d{4}(-?\d\d){2})[tT]?((\d\d:?){1,2}(\d\d)?(.\d{3})?([zZ]|[+-](\d\d):?(\d\d)))?\b",
+                Score = 1
+            }
+        ],
+        Context = ["date", "time", "datetime", "ISO 8601"]
+    };
 
     /// <summary>
     /// Recognizer for Dutch postcodes (NL_POSTCODE).

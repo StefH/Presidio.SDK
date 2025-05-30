@@ -5,7 +5,7 @@ namespace Presidio.Models;
 /// <summary>
 /// A regular expressions or deny-list based recognizer.
 /// </summary>
-public class PatternRecognizer
+public record PatternRecognizer
 {
     /// <summary>
     /// Name of recognizer.

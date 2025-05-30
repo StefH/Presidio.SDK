@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Presidio.Enums;
-using Presidio.Extensions.PatternRecognizers;
+using Presidio.Extensions;
 using Presidio.Models;
 using Presidio.Types;
 
@@ -52,7 +47,10 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
             
             BSN = 123456782
             
-            And for Jane it's AC439999
+            And for Jane it's AC439999.
+            
+            UTC = 2020-07-30T18:00:00.000Z
+            UTC = 2020-07-30T14:00:00.000-04
             """;
 
         var supportedEntities = await analyzerService.GetSupportedEntitiesAsync("nl", cancellationToken);
@@ -89,6 +87,7 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
                 AdditionalPatternRecognizers.DutchStreet
             ]
         };
+        analyzeRequest.AdHocRecognizers.AddDateTimeISO8601();
 
         var analysisResults = await analyzerService.AnalyzeAsync(analyzeRequest, cancellationToken);
 

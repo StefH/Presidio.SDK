@@ -39,7 +39,7 @@ public class AnalyzeRequest
     /// <summary>
     /// List of recognizers to be used in the context of this request only (ad-hoc).
     /// </summary>
-    public PatternRecognizer[]? AdHocRecognizers { get; init; }
+    public List<PatternRecognizer>? AdHocRecognizers { get; init; }
 
     /// <summary>
     /// List of context words which may help to raise recognized entities confidence.
