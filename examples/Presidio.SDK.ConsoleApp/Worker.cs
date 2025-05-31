@@ -51,6 +51,8 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
             
             UTC = 2020-07-30T18:00:00.000Z
             UTC = 2020-07-30T14:00:00.000-04
+            
+            CC = 5555 5555 5555 4444
             """;
 
         var supportedEntities = await analyzerService.GetSupportedEntitiesAsync("nl", cancellationToken);
@@ -81,10 +83,10 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
                     ],
                     Context = [ "zip", "code" ]
                 },
-                AdditionalPatternRecognizers.DutchDate,
-                AdditionalPatternRecognizers.DutchPostCode,
-                AdditionalPatternRecognizers.DutchBSN,
-                AdditionalPatternRecognizers.DutchStreet
+                AdditionalPatternRecognizers.NlDateRecognizer,
+                AdditionalPatternRecognizers.NlPostCode,
+                AdditionalPatternRecognizers.NlBSNRecognizer,
+                AdditionalPatternRecognizers.NlStreetRecognizer
             ]
         };
         analyzeRequest.AdHocRecognizers.AddDateTimeISO8601();

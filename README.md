@@ -13,10 +13,10 @@ Unofficial [RestEase](https://github.com/canton7/RestEase) C# Client for [Micros
 - DateTime ISO8601 (*example: 2020-07-30T18:00:00.000Z*)
 
 #### `nl` language 
-- DutchPostCode (*example: 1000 AA*)
-- DutchStreet (*example: Hoofdstraat 12a*)
-- DutchDate (*example: 25 maart 2024*)
-- DutchBSN (*example: 123456782*)
+- NlPostCodeRecognizer (*example: 1000 AA*)
+- NlStreetRecognizer (*example: Hoofdstraat 12a*)
+- NlDateRecognizer (*example: 25 maart 2024*)
+- NlBSNRecognizer (*example: 123456782*)
 
 
 ## ⭐ Usage

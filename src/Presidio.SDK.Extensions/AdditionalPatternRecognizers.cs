@@ -13,7 +13,7 @@ public static class AdditionalPatternRecognizers
     /// <summary>
     /// Recognizer for ISO 8601 Date object with timezone or UTC. 
     /// </summary>
-    public static readonly PatternRecognizer DateTimeISO8601 = new ()
+    public static readonly PatternRecognizer DateTimeISO8601Recognizer = new()
     {
         Name = "ISO 8601 DateTime recognizer",
         SupportedEntity = "DATE_TIME",
@@ -34,7 +34,7 @@ public static class AdditionalPatternRecognizers
     /// Recognizer for Dutch postcodes (NL_POSTCODE).
     /// Matches 4 digits (not starting with 0), optional space, and 2 uppercase letters (excluding SA, SD, SS).
     /// </summary>
-    public static readonly PatternRecognizer DutchPostCode = new()
+    public static readonly PatternRecognizer NlPostCode = new()
     {
         Name = "Dutch Postcode recognizer",
         SupportedEntity = "NL_POSTCODE",
@@ -55,7 +55,7 @@ public static class AdditionalPatternRecognizers
     /// <summary>
     /// Recognizer for Dutch date (NL_DATE).
     /// </summary>
-    public static readonly PatternRecognizer DutchDate = new()
+    public static readonly PatternRecognizer NlDateRecognizer = new()
     {
         Name = "Dutch Date recognizer",
         SupportedEntity = "NL_DATE",
@@ -76,7 +76,7 @@ public static class AdditionalPatternRecognizers
     /// <summary>
     /// Provides a recognizer for identifying Dutch Burgerservicenummer (BSN) patterns in text.
     /// </summary>
-    public static readonly PatternRecognizer DutchBSN = new()
+    public static readonly PatternRecognizer NlBSNRecognizer = new()
     {
         Name = "Dutch Burgerservicenummer (BSN) recognizer",
         SupportedEntity = "NL_BSN",
@@ -97,7 +97,7 @@ public static class AdditionalPatternRecognizers
     /// <summary>
     /// Provides a recognizer for identifying a Dutch Street Address (including house number).
     /// </summary>
-    public static readonly PatternRecognizer DutchStreet = new()
+    public static readonly PatternRecognizer NlStreetRecognizer = new()
     {
         Name = "Dutch Street (including house number) recognizer",
         SupportedEntity = "NL_STREET",
@@ -108,7 +108,7 @@ public static class AdditionalPatternRecognizers
             {
                 Name = "Dutch Street",
                 Regex = @"\b(?:(?:[0-9]{1,2}(?:e|ste|de)\s)?(?:(?:van|de|den|der|het|ter|ten|la|le|l’|sint|saint|prof(?:essor)?|dr|mr|mevrouw|jonkheer)\.?[\s\-]*)*)(?:[\w\-']+\s?)+(?:straat|laan|weg|hof|gracht|plein|dreef|singel|pad|steeg|kade|plantsoen|boulevard|ring|markt|akker|gaarde|zoom|oord|veld|kamp|erf|hoek|wal|berg|weide|rotonde|park|stoep|brug|haven|vest|scheg|pier|lei|tuin|kaai|dam|dwarsstraat|dwarsweg|dwarslaan)\b\s*[0-9]{1,5}(?:[\s\-]?[a-zA-Z]{1,3})?(?:\s?[0-9]{1,2})?",
-                Score = 0.90
+                Score = 0.75
             }
         ],
         Context = ["street", "address"]

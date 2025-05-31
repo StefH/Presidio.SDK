@@ -15,7 +15,7 @@ public static class PatternRecognizerExtensions
 
         foreach (var language in supportedLanguages ?? SupportedLanguages)
         {
-            var patternRecognizer = AdditionalPatternRecognizers.DateTimeISO8601;
+            var patternRecognizer = AdditionalPatternRecognizers.DateTimeISO8601Recognizer;
             if (patternRecognizers.Any(pr => pr.SupportedLanguage == language && pr.Name == patternRecognizer.Name))
             {
                 continue;
