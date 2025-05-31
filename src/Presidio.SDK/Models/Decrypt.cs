@@ -5,13 +5,9 @@ namespace Presidio.Models;
 /// <summary>
 /// Replace encrypted PII decrypted text.
 /// </summary>
-public class Decrypt
+public class Decrypt : IAnonymizer
 {
-    /// <summary>
-    /// "decrypt"
-    /// </summary>
-    /// <example>decrypt</example>
-    
+    /// <inheritdoc />
     public Operators Type => Operators.decrypt;
 
     /// <summary>
