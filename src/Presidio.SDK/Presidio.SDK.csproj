@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>0.0.1-preview-02</Version>
     <RootNamespace>Presidio</RootNamespace>
     <TargetFrameworks>netstandard2.1;net6.0;net8.0</TargetFrameworks>
     <PackageTags>Presidio;SDK;AI;PII;Personally Identifiable Information;classification;analyzer;anonymizer;client;rest;api;restease;</PackageTags>
