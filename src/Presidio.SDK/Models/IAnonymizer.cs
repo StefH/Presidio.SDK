@@ -9,5 +9,8 @@ namespace Presidio.Models;
 /// The <see cref="Type"/> property can be used to identify the type or category of the anonymizer.</remarks>
 public interface IAnonymizer
 {
+    /// <summary>
+    /// Gets the anonymizer type.
+    /// </summary>
     Operators Type { get; }
 }

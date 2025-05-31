@@ -7,10 +7,7 @@ namespace Presidio.Models;
 /// </summary>
 public class Replace : IAnonymizer
 {
-    /// <summary>
-    /// The type of anonymizer. Always "replace".
-    /// </summary>
-    /// <example>replace</example>
+    /// <inheritdoc />
     public Operators Type => Operators.replace;
 
     /// <summary>

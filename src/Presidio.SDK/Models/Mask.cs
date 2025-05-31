@@ -4,9 +4,7 @@ namespace Presidio.Models;
 
 public class Mask : IAnonymizer
 {
-    /// <summary>
-    /// Gets the type of the anonymizer. Always "mask".
-    /// </summary>
+    /// <inheritdoc />
     public Operators Type => Operators.mask;
 
     /// <summary>

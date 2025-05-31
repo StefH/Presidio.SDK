@@ -4,9 +4,7 @@ namespace Presidio.Models;
 
 public class Hash : IAnonymizer
 {
-    /// <summary>
-    /// Gets the anonymizer type.
-    /// </summary>
+    /// <inheritdoc />
     public Operators Type => Operators.hash;
 
     /// <summary>

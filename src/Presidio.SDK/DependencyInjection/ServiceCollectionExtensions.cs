@@ -14,14 +14,6 @@ namespace Presidio.DependencyInjection;
 [PublicAPI]
 public static class ServiceCollectionExtensions
 {
-    private static readonly JsonSerializerSettings JsonSerializerSettings = new()
-    {
-        ContractResolver = new DefaultContractResolver
-        {
-            NamingStrategy = new SnakeCaseNamingStrategy()
-        }
-    };
-
     public static IServiceCollection AddPresidioSDK(this IServiceCollection services, IConfiguration configuration)
     {
         Guard.NotNull(services);
@@ -33,7 +25,7 @@ public static class ServiceCollectionExtensions
         });
     }
 
-    public static IServiceCollection AddPresidioSDK(this IServiceCollection services, IConfigurationSection section, JsonSerializerSettings? jsonSerializerSettings = null)
+    public static IServiceCollection AddPresidioSDK(this IServiceCollection services, IConfigurationSection section)
     {
         Guard.NotNull(services);
         Guard.NotNull(section);
@@ -51,8 +43,7 @@ public static class ServiceCollectionExtensions
 
         return services.AddPresidioSDK(options);
     }
-    
-    // In AddPresidioSDK, register the handler and add it to the HttpClient pipeline
+
     public static IServiceCollection AddPresidioSDK(this IServiceCollection services, PresidioSDKOptions options)
     {
         Guard.NotNull(services);
@@ -65,15 +56,25 @@ public static class ServiceCollectionExtensions
             services.AddTransient<PresidioHttpLoggingHandler>();
         }
 
-        services
-            .AddHttpClient("Presidio.SDK.Analyzer", httpClient =>
+        var jsonSerializerSettings = new JsonSerializerSettings
+        {
+            ContractResolver = new DefaultContractResolver
             {
-                httpClient.BaseAddress = options.AnalyzerBaseAddress;
-                httpClient.Timeout = TimeSpan.FromSeconds(options.TimeoutInSeconds);
-            })
-            .AddPolicyHandler((serviceProvider, _) => HttpClientRetryPolicies.GetPolicy<IPresidioAnalyzer>(serviceProvider, options.MaxRetries, options.HttpStatusCodesToRetry))
-            .AddPresidioHttpLoggingHandler(options)
-            .UseWithRestEaseClient<IPresidioAnalyzer>(o => o.JsonSerializerSettings = JsonSerializerSettings);
+                NamingStrategy = new SnakeCaseNamingStrategy()
+            },
+            NullValueHandling = NullValueHandling.Ignore,
+            Formatting = options.WriteJsonIndented ? Formatting.Indented : Formatting.None
+        };
+
+        services
+                .AddHttpClient("Presidio.SDK.Analyzer", httpClient =>
+                {
+                    httpClient.BaseAddress = options.AnalyzerBaseAddress;
+                    httpClient.Timeout = TimeSpan.FromSeconds(options.TimeoutInSeconds);
+                })
+                .AddPolicyHandler((serviceProvider, _) => HttpClientRetryPolicies.GetPolicy<IPresidioAnalyzer>(serviceProvider, options.MaxRetries, options.HttpStatusCodesToRetry))
+                .AddPresidioHttpLoggingHandler(options)
+                .UseWithRestEaseClient<IPresidioAnalyzer>(o => o.JsonSerializerSettings = jsonSerializerSettings);
 
         services
             .AddHttpClient("Presidio.SDK.Anonymizer", httpClient =>
@@ -83,7 +84,7 @@ public static class ServiceCollectionExtensions
             })
             .AddPolicyHandler((serviceProvider, _) => HttpClientRetryPolicies.GetPolicy<IPresidioAnonymizer>(serviceProvider, options.MaxRetries, options.HttpStatusCodesToRetry))
             .AddPresidioHttpLoggingHandler(options)
-            .UseWithRestEaseClient<IPresidioAnonymizer>(o => o.JsonSerializerSettings = JsonSerializerSettings);
+            .UseWithRestEaseClient<IPresidioAnonymizer>(o => o.JsonSerializerSettings = jsonSerializerSettings);
 
         return services;
     }

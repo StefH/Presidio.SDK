@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using Presidio.Enums;
 
 namespace Presidio.Models;
-            
+
 public class AnalyzeRequest
 {
     /// <summary>
@@ -39,11 +39,15 @@ public class AnalyzeRequest
     /// <summary>
     /// List of recognizers to be used in the context of this request only (ad-hoc).
     /// </summary>
-    [JsonProperty("ad_hoc_recognizers")]
-    public PatternRecognizer[]? AdHocRecognizers { get; init; }
+    public List<PatternRecognizer>? AdHocRecognizers { get; init; }
 
     /// <summary>
     /// List of context words which may help to raise recognized entities confidence.
     /// </summary>
     public string[]? Context { get; init; }
+
+    /// <summary>
+    /// The Regex flags to use.
+    /// </summary>
+    public RegexFlags? GlobalRegexFlags { get; set; }
 }

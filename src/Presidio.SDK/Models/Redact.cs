@@ -8,9 +8,6 @@ namespace Presidio.Models;
 /// </summary>
 public class Redact : IAnonymizer
 {
-    /// <summary>
-    /// Gets the type of the anonymizer.
-    /// </summary>
-    /// <example>redact</example>
+    /// <inheritdoc />
     public Operators Type => Operators.redact;
 }

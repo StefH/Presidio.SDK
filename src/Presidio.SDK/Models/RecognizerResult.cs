@@ -33,5 +33,10 @@ public class RecognizerResult
     /// <summary>
     /// Recognition metadata
     /// </summary>
-    public RecognizedMetadata? RecognitionMetadata { get; set; }
+    public RecognizedMetadata? RecognitionMetadata { get; init; }
+
+    /// <summary>
+    /// Extra explanation.
+    /// </summary>
+    public AnalysisExplanation? AnalysisExplanation { get; init; }
 }

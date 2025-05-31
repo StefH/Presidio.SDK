@@ -7,9 +7,7 @@ namespace Presidio.Models;
 /// </summary>
 public class Encrypt : IAnonymizer
 {
-    /// <summary>
-    /// Gets the anonymizer type.
-    /// </summary>
+    /// <inheritdoc />
     public Operators Type => Operators.encrypt;
 
     /// <summary>
