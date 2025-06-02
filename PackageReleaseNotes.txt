@@ -1,5 +1,4 @@
-# 0.0.1-preview-03 (31 May 2025)
-- #2 Add GitHub actions [enhancement]
-- #3 Updated models + added new project [bug]
+# 0.0.1 (02 June 2025)
+- #4 Remove pattern Operator [enhancement]
 
 The full release notes can be found here: https://github.com/StefH/Presidio.SDK/blob/main/ReleaseNotes.md

@@ -1,3 +1,6 @@
+# 0.0.1 (02 June 2025)
+- [#4](https://github.com/StefH/Presidio.SDK/pull/4) - Remove pattern Operator [enhancement] contributed by [StefH](https://github.com/StefH)
+
 # 0.0.1-preview-03 (31 May 2025)
 - [#2](https://github.com/StefH/Presidio.SDK/pull/2) - Add GitHub actions [enhancement] contributed by [StefH](https://github.com/StefH)
 - [#3](https://github.com/StefH/Presidio.SDK/pull/3) - Updated models + added new project [bug] contributed by [StefH](https://github.com/StefH)
