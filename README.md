@@ -10,7 +10,7 @@ Unofficial [RestEase](https://github.com/canton7/RestEase) C# Client for [Micros
 ### Extensions
 
 #### All languages
-- DateTime ISO8601 (*example: 2020-07-30T18:00:00.000Z*)
+- DateTimeISO8601Recognizer (*example: 2020-07-30T18:00:00.000Z*)
 
 #### `nl` language 
 - NlPostCodeRecognizer (*example: 1000 AA*)
