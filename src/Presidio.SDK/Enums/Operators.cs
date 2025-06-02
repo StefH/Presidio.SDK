@@ -25,8 +25,6 @@ public enum Operators
 
     mask,
 
-    pattern,
-
     redact,
 
     replace

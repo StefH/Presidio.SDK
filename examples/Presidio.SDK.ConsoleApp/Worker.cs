@@ -128,6 +128,7 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
             Anonymizers = new Dictionary<string, IAnonymizer>
             {
                 [PIIEntityTypes.EMAIL_ADDRESS] = new Encrypt { Key = "3t6w9z$C.F)J@NcR" },
+                [AdditionalPatternRecognizers.NlBSNRecognizer.SupportedEntity] = new Mask { MaskingChar = "*", CharsToMask = 8, FromEnd = true },
                 [PIIEntityTypes.US_DRIVER_LICENSE] = new Mask { MaskingChar = "*", CharsToMask = 4, FromEnd = true }
             },
             AnalyzerResults = analysisResults.Select(r => new RecognizerResult
