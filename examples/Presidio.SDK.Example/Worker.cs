@@ -39,7 +39,7 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
                     [
                         new Pattern
                         {
-                            Name = "Dutch PostCode",
+                            Name = "Dutch Postcode",
                             Regex = @"\b[1-9][0-9]{3}\s?(?!SA|SD|SS)[A-Z]{2}\b",
                             Score = 1
                         }
