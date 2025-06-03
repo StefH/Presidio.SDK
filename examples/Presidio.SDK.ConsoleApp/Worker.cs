@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Lingua;
+using Microsoft.Extensions.Logging;
 using Presidio.Enums;
 using Presidio.Extensions;
 using Presidio.Models;
@@ -55,14 +56,20 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
             CC = 5555 5555 5555 4444
             """;
 
-        var supportedEntities = await analyzerService.GetSupportedEntitiesAsync("nl", cancellationToken);
+        var detector = LanguageDetectorBuilder
+            .FromAllLanguages()
+            .Build();
+
+        var detectedLanguage = detector.DetectLanguageOf(text).IsoCode6391().ToString().ToLowerInvariant();
+
+        var supportedEntities = await analyzerService.GetSupportedEntitiesAsync(detectedLanguage, cancellationToken);
         logger.LogWarning("SupportedEntities : {items}", string.Join(',', supportedEntities));
 
         // Step 1: Analyze text for PII
         var analyzeRequest = new AnalyzeRequest
         {
             Text = text,
-            Language = "nl",
+            Language = detectedLanguage,
             CorrelationId = Guid.NewGuid().ToString(),
             ReturnDecisionProcess = true,
             AdHocRecognizers =
