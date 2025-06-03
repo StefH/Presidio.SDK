@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Text.Json;
+using Microsoft.Extensions.Logging;
 using Presidio.Enums;
 using Presidio.Models;
 using Presidio.Types;
@@ -7,13 +8,14 @@ namespace Presidio.SDK.Example;
 
 internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer anonymizerService, ILogger<Worker> logger)
 {
-    public async Task RunAsync(CancellationToken cancellationToken = default)
+    public async Task RunAsync()
     {
         var text =
             """
             Geachte heer/mevrouw,
             
-            Op 10 maart 2024 heb ik een oven gekocht. Helaas werkt de oven sinds 25 maart 2024 niet naar behoren, de oven wordt niet warm en geeft een foutmelding op het display.
+            Op 10 maart 2024 heb ik een oven gekocht.
+            Helaas werkt de oven sinds 25 maart 2024 niet naar behoren, de oven wordt niet warm en geeft een foutmelding op het display.
             
             Ik zie uw reactie met belangstelling tegemoet.
             
@@ -49,8 +51,9 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
             ]
         };
 
-        var analysisResults = await analyzerService.AnalyzeAsync(analyzeRequest, cancellationToken);
-
+        var analysisResults = await analyzerService.AnalyzeAsync(analyzeRequest);
+        var analysisResultsAsJson = JsonSerializer.Serialize(analysisResults, new JsonSerializerOptions { WriteIndented = true });
+        logger.LogWarning("AnalysisResults: {json}", analysisResultsAsJson);
 
         // Step 2a: Anonymize the detected PII
         var anonymizeRequest = new AnonymizeRequest
@@ -71,7 +74,7 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
             }).ToArray()
         };
 
-        var anonymizeResponse = await anonymizerService.AnonymizeAsync(anonymizeRequest, cancellationToken);
+        var anonymizeResponse = await anonymizerService.AnonymizeAsync(anonymizeRequest);
         logger.LogWarning("Anonymized text: {Text}", anonymizeResponse.Text);
 
         // Step 2b: Deanonymize the detected PII
@@ -87,7 +90,7 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
                 .ToArray()
         };
 
-        var deanonymizeResponse = await anonymizerService.DeanonymizeAsync(deanonymizeRequest, cancellationToken);
+        var deanonymizeResponse = await anonymizerService.DeanonymizeAsync(deanonymizeRequest);
         logger.LogWarning("Deanonymized text: {Text}", deanonymizeResponse.Text);
     }
 }
