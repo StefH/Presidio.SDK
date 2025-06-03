@@ -128,7 +128,7 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
         logger.LogWarning("Reversed text: {Text}", reversed);
 
 
-        // Step 3: Anonymize the detected PII using service
+        // Step 3a: Anonymize the detected PII
         var anonymizeRequest = new AnonymizeRequest
         {
             Text = text,
@@ -150,6 +150,7 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
         var anonymizeResponse = await anonymizerService.AnonymizeAsync(anonymizeRequest, cancellationToken);
         logger.LogWarning("Anonymized text: {Text}", anonymizeResponse.Text);
 
+        // Step 3b: Deanonymize the detected PII
         var deanonymizeRequest = new DeanonymizeRequest
         {
             Text = anonymizeResponse.Text,
