@@ -57,7 +57,7 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
             """;
 
         var detector = LanguageDetectorBuilder
-            .FromAllLanguages()
+            .FromLanguages(Language.Dutch, Language.English)
             .Build();
 
         var detectedLanguage = detector.DetectLanguageOf(text).IsoCode6391().ToString().ToLowerInvariant();
