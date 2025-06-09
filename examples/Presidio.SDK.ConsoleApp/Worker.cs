@@ -96,7 +96,6 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
                 AdditionalPatternRecognizers.NlStreetRecognizer
             ]
         };
-        analyzeRequest.AdHocRecognizers.AddDateTimeISO8601();
 
         var analysisResults = await analyzerService.AnalyzeAsync(analyzeRequest, cancellationToken);
 

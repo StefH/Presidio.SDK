@@ -19,7 +19,7 @@ static class Program
 
         var worker = serviceProvider.GetRequiredService<Worker>();
 
-        await worker.RunAsync(CancellationToken.None);
+        await worker.RunAsync();
     }
 
     private static ServiceProvider RegisterServices(string[] args)
