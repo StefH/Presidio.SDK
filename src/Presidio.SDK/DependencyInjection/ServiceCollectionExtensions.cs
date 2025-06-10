@@ -93,9 +93,7 @@ public static class ServiceCollectionExtensions
                     httpClient.BaseAddress = options.AnonymizerBaseAddress;
                     httpClient.Timeout = TimeSpan.FromSeconds(options.TimeoutInSeconds);
                 })
-                .AddPolicyHandler((serviceProvider, _) =>
-                    HttpClientRetryPolicies.GetPolicy<IPresidioAnonymizer>(serviceProvider, options.MaxRetries,
-                        options.HttpStatusCodesToRetry))
+                .AddPolicyHandler((serviceProvider, _) => HttpClientRetryPolicies.GetPolicy<IPresidioAnonymizer>(serviceProvider, options.MaxRetries, options.HttpStatusCodesToRetry))
                 .AddPresidioHttpLoggingHandler(options)
                 .UseWithRestEaseClient<IPresidioAnonymizer>(o => o.JsonSerializerSettings = jsonSerializerSettings);
         }
