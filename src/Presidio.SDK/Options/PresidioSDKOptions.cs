@@ -28,7 +28,7 @@ public class PresidioSDKOptions
     /// The maximum number of retries.
     /// </summary>
     [Range(0, 99)]
-    public int MaxRetries { get; set; } = 3;
+    public int MaxRetries { get; set; } = 5;
 
     /// <summary>
     /// In addition to Network failures, TaskCanceledException, HTTP 5XX and HTTP 408. Also retry these <see cref="HttpStatusCode"/>s. [Optional]

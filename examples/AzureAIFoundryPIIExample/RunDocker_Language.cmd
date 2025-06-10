@@ -1,0 +1,2 @@
+rem This is only "language-detection"
+docker run --rm -it -p 5000:5000 --memory 4g --cpus 1 mcr.microsoft.com/azure-cognitive-services/textanalytics/language Eula=accept Billing=%LANGUAGE_URL% ApiKey=%LANGUAGE_KEY%

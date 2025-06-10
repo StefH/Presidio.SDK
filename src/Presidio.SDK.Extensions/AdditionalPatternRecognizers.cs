@@ -11,26 +11,6 @@ public static class AdditionalPatternRecognizers
     private const RegexFlags DefaultGlobalRegexFlags = RegexFlags.Multiline | RegexFlags.DotAll;
 
     /// <summary>
-    /// Recognizer for ISO 8601 Date object with timezone or UTC. 
-    /// </summary>
-    public static readonly PatternRecognizer DateTimeISO8601Recognizer = new()
-    {
-        Name = "ISO 8601 DateTime recognizer",
-        SupportedEntity = "DATE_TIME",
-        SupportedLanguage = "en",
-        Patterns =
-        [
-            new Pattern
-            {
-                Name = "ISO 8601 DateTime",
-                Regex = @"\b(\d{4}(-?\d\d){2})[tT]?((\d\d:?){1,2}(\d\d)?(.\d{3})?([zZ]|[+-](\d\d):?(\d\d)))?\b",
-                Score = 1
-            }
-        ],
-        Context = ["date", "time", "datetime", "ISO 8601"]
-    };
-
-    /// <summary>
     /// Recognizer for Dutch postcodes (NL_POSTCODE).
     /// Matches 4 digits (not starting with 0), optional space, and 2 uppercase letters (excluding SA, SD, SS).
     /// </summary>
@@ -44,7 +24,7 @@ public static class AdditionalPatternRecognizers
         [
             new Pattern
             {
-                Name = "Dutch PostCode",
+                Name = "Dutch Postcode",
                 Regex = @"\b[1-9][0-9]{3}\s?(?!SA|SD|SS)[A-Z]{2}\b",
                 Score = 1
             }

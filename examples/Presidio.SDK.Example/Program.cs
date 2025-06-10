@@ -4,7 +4,7 @@ using Presidio.DependencyInjection;
 using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
 
-namespace Presidio.SDK.ConsoleApp;
+namespace Presidio.SDK.Example;
 
 static class Program
 {
