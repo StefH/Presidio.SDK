@@ -49,11 +49,6 @@ public static class ServiceCollectionExtensions
         Guard.NotNull(services);
         Guard.NotNull(options);
 
-        if (options.AnalyzerBaseAddress == null && options.AnonymizerBaseAddress == null)
-        {
-            throw new ArgumentException($"The {nameof(PresidioSDKOptions.AnalyzerBaseAddress)} or {nameof(PresidioSDKOptions.AnonymizerBaseAddress)} should be defined.");
-        }
-
         services.AddOptionsWithDataAnnotationValidation(options);
 
         if (options.LogRequest || options.LogResponse)
