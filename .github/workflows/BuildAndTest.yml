@@ -21,3 +21,6 @@ jobs:
 
     - name: 'Build'
       run: dotnet build './examples/Presidio.SDK.ConsoleApp/Presidio.SDK.ConsoleApp.csproj' -c Release
+
+    - name: 'Test'
+      run: dotnet test './tests/Presidio.SDK.Tests/Presidio.SDK.Tests.csproj' -c Release

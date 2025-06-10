@@ -1,21 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Presidio.Options.Validation;
 
 namespace Presidio.Options;
 
 [PublicAPI]
+[AtLeastOneBaseAddressRequired]
 public class PresidioSDKOptions
 {
     /// <summary>
-    /// The required BaseAddress for Analyzer.
+    /// The BaseAddress for Analyzer.
     /// </summary>
-    [Required]
-    public Uri AnalyzerBaseAddress { get; set; } = new("http://localhost:5002");
+    public Uri? AnalyzerBaseAddress { get; set; }
 
     /// <summary>
-    /// The required BaseAddress for Anonymizer.
+    /// The BaseAddress for Anonymizer.
     /// </summary>
-    [Required]
-    public Uri AnonymizerBaseAddress { get; set; } = new("http://localhost:5001");
+    public Uri? AnonymizerBaseAddress { get; set; }
 
     /// <summary>
     /// This timeout in seconds defines the timeout on the HttpClient which is used to call the BaseAddress.

@@ -66,7 +66,9 @@ public static class ServiceCollectionExtensions
             Formatting = options.WriteJsonIndented ? Formatting.Indented : Formatting.None
         };
 
-        services
+        if (options.AnalyzerBaseAddress != null)
+        {
+            services
                 .AddHttpClient("Presidio.SDK.Analyzer", httpClient =>
                 {
                     httpClient.BaseAddress = options.AnalyzerBaseAddress;
@@ -75,16 +77,21 @@ public static class ServiceCollectionExtensions
                 .AddPolicyHandler((serviceProvider, _) => HttpClientRetryPolicies.GetPolicy<IPresidioAnalyzer>(serviceProvider, options.MaxRetries, options.HttpStatusCodesToRetry))
                 .AddPresidioHttpLoggingHandler(options)
                 .UseWithRestEaseClient<IPresidioAnalyzer>(o => o.JsonSerializerSettings = jsonSerializerSettings);
+        }
 
-        services
-            .AddHttpClient("Presidio.SDK.Anonymizer", httpClient =>
-            {
-                httpClient.BaseAddress = options.AnonymizerBaseAddress;
-                httpClient.Timeout = TimeSpan.FromSeconds(options.TimeoutInSeconds);
-            })
-            .AddPolicyHandler((serviceProvider, _) => HttpClientRetryPolicies.GetPolicy<IPresidioAnonymizer>(serviceProvider, options.MaxRetries, options.HttpStatusCodesToRetry))
-            .AddPresidioHttpLoggingHandler(options)
-            .UseWithRestEaseClient<IPresidioAnonymizer>(o => o.JsonSerializerSettings = jsonSerializerSettings);
+        if (options.AnonymizerBaseAddress != null)
+        {
+
+            services
+                .AddHttpClient("Presidio.SDK.Anonymizer", httpClient =>
+                {
+                    httpClient.BaseAddress = options.AnonymizerBaseAddress;
+                    httpClient.Timeout = TimeSpan.FromSeconds(options.TimeoutInSeconds);
+                })
+                .AddPolicyHandler((serviceProvider, _) => HttpClientRetryPolicies.GetPolicy<IPresidioAnonymizer>(serviceProvider, options.MaxRetries, options.HttpStatusCodesToRetry))
+                .AddPresidioHttpLoggingHandler(options)
+                .UseWithRestEaseClient<IPresidioAnonymizer>(o => o.JsonSerializerSettings = jsonSerializerSettings);
+        }
 
         return services;
     }
