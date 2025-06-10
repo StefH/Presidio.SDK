@@ -1,4 +1,4 @@
-# 0.0.1 (02 June 2025)
-- #4 Remove pattern Operator [enhancement]
+# 0.0.2 (10 June 2025)
+- #6 Make BaseAddresses nullable [enhancement]
 
 The full release notes can be found here: https://github.com/StefH/Presidio.SDK/blob/main/ReleaseNotes.md
