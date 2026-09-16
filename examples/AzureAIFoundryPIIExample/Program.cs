@@ -24,7 +24,7 @@ class Program
             """;
 
         // 0. Define key and endpoints
-        var azureKeyCredential = new AzureKeyCredential(Environment.GetEnvironmentVariable("LANGUAGE_KEY")!);
+        var azureKeyCredential = new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_AI_LANGUAGE_KEY")!);
         var languageEndpoint = new Uri("http://localhost:5000");
         var personallyIdentifiableInformationEndpoint = new Uri("http://localhost:5004");
 
