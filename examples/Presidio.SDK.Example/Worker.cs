@@ -12,6 +12,22 @@ internal class Worker(IPresidioAnalyzer analyzerService, IPresidioAnonymizer ano
     {
         var text =
             """
+            Dear John Doe,
+
+            We are reaching out to confirm your current details in our records. Please find the information below:
+
+            Email: john.doe@emailprovider.com
+            Driver’s License Number: D1234567
+            Bank Account Number: 9876543210
+
+            Thank you for ensuring your information is up-to-date.
+
+            Best regards,
+            mstack
+            """;
+
+        var text2 =
+            """
             Geachte heer/mevrouw,
             
             Op 10 maart 2024 heb ik een oven gekocht.
