@@ -9,20 +9,22 @@ class Program
     {
         var text =
             """
-            Geachte heer/mevrouw,
-
-            Op 10 maart 2024 heb ik een oven gekocht.
-            Helaas werkt de oven sinds 25 maart 2024 niet naar behoren, de oven wordt niet warm en geeft een foutmelding op het display.
-
-            Ik zie uw reactie met belangstelling tegemoet.
-
-            Peter Jansen
-            Dorpsstraat 10, 5678 CD Utrecht
-            peter.jansen@email.com
+            Dear John Doe,
+            
+            We are reaching out to confirm your current details in our records. Please find the information below:
+            
+            Email: john.doe@emailprovider.com
+            Driver’s License Number: D1234567
+            Bank Account Number: 9876543210
+            
+            Thank you for ensuring your information is up-to-date.
+            
+            Best regards,
+            mstack
             """;
 
         // 0. Define key and endpoints
-        var azureKeyCredential = new AzureKeyCredential(Environment.GetEnvironmentVariable("LANGUAGE_KEY")!);
+        var azureKeyCredential = new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_AI_LANGUAGE_KEY")!);
         var languageEndpoint = new Uri("http://localhost:5000");
         var personallyIdentifiableInformationEndpoint = new Uri("http://localhost:5004");
 
@@ -36,7 +38,7 @@ class Program
 
         Console.WriteLine($"Redacted Text: {entities.RedactedText}");
 
-        Console.WriteLine($"Recognized {entities.Count} PII entit{(entities.Count > 1 ? "ies" : "y")}:");
+        Console.WriteLine($"\r\nRecognized {entities.Count} PII entit{(entities.Count > 1 ? "ies" : "y")}:");
         foreach (PiiEntity entity in entities)
         {
             Console.WriteLine($"Text: {entity.Text}, Category: {entity.Category}, SubCategory: {entity.SubCategory}, Confidence score: {entity.ConfidenceScore}");
